@@ -150,10 +150,16 @@ class Pdm extends CI_Controller
                 redirect($this->client_url.'pdm');
             }
                
+        }else{
+              $data =array();
+                $this->load->model('Subassets_model');
+                $this->load->model('kare_model');
+            	$data['components']=$this->kare_model->get_components_list();
+		$data['expresults'] = $this->Subassets_model->get_type_category('result');
+		$data['observations'] = $this->Subassets_model->get_type_category('observations');
+                $this->load->view('userpanel/pdm/index',$data);
         }
-        
-        $data =array();
-        $this->load->view('userpanel/pdm/index',$data);
+      
        //$this->report();
      }
      

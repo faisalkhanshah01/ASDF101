@@ -86,12 +86,22 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="group" class="control-label">Observation</label>
-                                    <input type="text" id="group" class="form-control" name="pdm_observations[]" id="pdm_observation" required/>
+                                    <select class="form-control" name="pdm_observations[]" id="pdm_observation"  required>
+                                        <?php foreach($observations as $key=>$val){?>
+                                                <option value="<?php echo $key;  ?>"><?php echo $val;  ?></option>
+                                        <?php } ?>
+                                    </select>
+                                    
                                 </div>
 
                                 <div class="form-group col-md-12">
                                     <label for="group" class="control-label">Expected Results</label>
-                                    <input type="text" id="group" class="form-control" name="pdm_expresults[]" id="pdm_expresults" />
+                                    <select class="form-control" name="pdm_expresults[]" id="pdm_expresults"   >
+                                        <?php foreach($expresults as $key=>$val){?>
+                                                <option value="<?php echo $key;  ?>"><?php echo $val;  ?></option>
+                                        <?php } ?>
+                                    </select>
+                                   
                                 </div>
 
                             </div>
