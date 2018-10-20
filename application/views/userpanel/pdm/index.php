@@ -51,13 +51,13 @@
                                 echo 'SELECT ASSET';
                             }
                             ?></label>
+                               
                             <select id="pdm_asset" name="pdm_asset"  class="form-control" required>
-                                <option value="12">Select Asset Id</option>
+                            <option value="">Select Asset Id</option>
                             <?php
-                            foreach ($jobcards as $jobValue) {
-                                echo "<option value='" . $jobValue . "'>" . $jobValue . "</option>";
-                            }
-                            ?>
+                            foreach($components as $key=>$component){?>
+                                    <option value="<?php echo $component['component_id'];  ?>"><?php echo $component['component_code'];val;  ?></option>
+                            <?php } ?>
                             </select>
                             <?php echo form_error('jc_number'); ?>
                               
