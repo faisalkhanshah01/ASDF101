@@ -17,19 +17,19 @@
 </script>
 <script type="text/javascript">
 
-	
 
-        // form validation 
-	$(document).ready(function(e) 
+
+        // form validation
+	$(document).ready(function(e)
 	{
-		
+
 		$(document).on('mouseenter','.client_popup',function(){
 			$( this ).popover( "toggle" );
 		});
-		
+
 		   $("#inspector_table").DataTable({
 		   		   "order":[[ 0,"asc" ]]
-				    
+
 		   });
 
 			$("#componentForm").validate({
@@ -41,80 +41,80 @@
 							},
 							field1:{
 							  required :true
-							}			
+							}
 						}
 				 });
-				 
-	});	
 
-     
+	});
+
+
 		$(document).ready(function(e) {
 				$("#components_table").dataTable();
 				$("#approved_table").dataTable();
 				$("#rejected_table").dataTable();
 				$(".assign_site_table").dataTable();
-				
+
 				$("#inspection_result_table").dataTable();
 				$("#siteidMissingTable").dataTable();
-				
-				/* Limit the fetching of records from server side. Done by Shakti Singh */	
+
+				/* Limit the fetching of records from server side. Done by Shakti Singh */
 				var oMasterTable = $('#master_data_table').dataTable({
-					'bProcessing': true, 
-					'bServerSide': true, 
+					'bProcessing': true,
+					'bServerSide': true,
 					'sAjaxSource': '<?php echo base_url('SiteId_kare/angular') ?>?action=getMasterDataAjax'
 				});
 				//$("#sub_assets_table").dataTable();
 				var oSubAssetsTable = $('#sub_assets_table').dataTable({
-					'bProcessing': true, 
-					'bServerSide': true, 
+					'bProcessing': true,
+					'bServerSide': true,
 					'sAjaxSource': '<?php echo base_url('SiteId_kare/angular') ?>?action=getsubAssetDataAjax'
 				});
-				
+
 				var oSiteIDTable = $('#siteID_master_table').dataTable({
-					'bProcessing': true, 
-					'bServerSide': true, 
+					'bProcessing': true,
+					'bServerSide': true,
 					'sAjaxSource': '<?php echo base_url('SiteId_kare/angular') ?>?action=getSiteIdAjax'
 				});
-				
+
 				var oSMSTable = $('#sms_component_table').dataTable({
-					'bProcessing': true, 
-					'bServerSide': true, 
+					'bProcessing': true,
+					'bServerSide': true,
 					'sAjaxSource': '<?php echo base_url('SiteId_kare/angular') ?>?action=getSmsComponentAjax'
 				});
-				
+
 				var oAssetTable = $('#asset_table').dataTable({
-					'bProcessing': true, 
-					'bServerSide': true, 
+					'bProcessing': true,
+					'bServerSide': true,
 					'sAjaxSource': '<?php echo base_url('SiteId_kare/angular') ?>?action=getAssetAjax'
 				});
-				
+
 				var oClientTable = $('#table_client_list').dataTable({
-					'bProcessing': true, 
-					'bServerSide': true, 
+					'bProcessing': true,
+					'bServerSide': true,
 					'sAjaxSource': '<?php echo base_url('SiteId_kare/angular') ?>?action=getClientAjax'
 				});
-				
+
 				var oAssestSeriesTable = $('#assetSeries_table').dataTable({
-					'bProcessing': true, 
-					'bServerSide': true, 
+					'bProcessing': true,
+					'bServerSide': true,
 					'sAjaxSource': '<?php echo base_url('SiteId_kare/angular') ?>?action=getAssetSeriesAjax'
 				});
 
 				var oClientTable = $('#table_lang_list').dataTable({
-					'bProcessing': true, 
-					'bServerSide': true, 
+					'bProcessing': true,
+					'bServerSide': true,
 					'sAjaxSource': '<?php echo base_url('Language_controller/angular') ?>?action=getLanguageAjax'
 				});
-		
+
 				// change the row background color :
 				$("#master_table tr").dblclick(function(){
 				    if(!$(this).prop('selected')){
 					  $(this).prop('selected',true);
-					  $(this).css("background-color","#dff0d8"); 
+					  $(this).css("background-color","#dff0d8");
 				    }else{
 						$(this).prop('selected',false);
 						$(this).css("background-color","white");
-					}	 	 
+					}
 				});
 			});
 
@@ -125,58 +125,58 @@
         		$('ul.nav a[href="'+ url +'"]').parent().addClass('active');
         		$('ul.nav a').filter(function() {
              		return this.href == url;
-        			}).parent().addClass('active');	
+        			}).parent().addClass('active');
     		});
-			
-			
+
+
 	$(document).ready(function(e) {
-		 
+
 		 $("#search_assetSeries").keyup(function(e){
 			 var query=$(this).val();
 			 if(1){
 				 var searchStr="search="+query;
 				 $.get("<?php echo base_url('manage_kare/ajax_get_assetSeries') ?>",searchStr,function(data){
 					// alert(data);
-					 $(".search-container").html(data);	 
+					 $(".search-container").html(data);
 				 });
 			 }
 		 })
-		
-		
+
+
 		$("#search_tool").keyup(function(e){
 			 var query=$(this).val();
 			 if(1){
 				 var searchStr="search="+query;
 				 $.get("<?php echo base_url('manage_kare/ajax_get_components') ?>",searchStr,function(data){
 					// alert(data);
-					 $(".search-container").html(data);	 
+					 $(".search-container").html(data);
 				 });
 			 }
 		})
-		  
-		 
+
+
 		$(".search-container").on("click",":checkbox",function(){
 			if(this.checked){
 				$(this).parent("p").css("background-color","#9FF");
 			} else{
-				$(this).parent("p").css("background-color","white"); 
-			}	 
+				$(this).parent("p").css("background-color","white");
+			}
 		});
-		 
-		 
+
+
 		$("#com_sel_btn").click(function(){
-			// get all the selected values 
+			// get all the selected values
 			var component_list=[];
 			$("input:hidden").each(function(){
-				component_list.push($(this).val());				       	
+				component_list.push($(this).val());
 			});
-			
+
 			$("div#sel_component input:checked").each(function(index,ele){
 
 				component=$(this).val();
 				if(component_list.indexOf(component)!=-1){
 					alert( component + " already in list");
-					
+
 				}else{
 					$("<p class='bg-success'>"+component+'<span class="pull-right text-danger  glyphicon glyphicon-trash"></span>'
 					+'<input type="hidden" class="sel-component" name="product_components[]" value="'+component+'"/>'
@@ -184,19 +184,19 @@
 				}
 				$(this).prop("checked",false);
 				$(this).parent("p").css("background-color","#FFF");
-			   
+
 			});
 		});
-			
+
 		$("#product_component").on("click",".glyphicon-trash",function(){
 			$(this).parent("p").remove();
 		});
-		 
-		 
-		 
+
+
+
 		var counter = 0;
 		var con = 0;
-		var component_list=[]; 
+		var component_list=[];
 		$("#com_sel_btn_master").click(function(){
 			if(con == 0 && $('#product_component_master').data('name') == 'mdata_edit'){
 				var no_of_values =  $('#product_component_master').attr('rel');
@@ -204,14 +204,14 @@
 				con++;
 			}
 
-			// get all the selected values 
-			var component_list=[]; 
+			// get all the selected values
+			var component_list=[];
 			$("input:hidden").each(function(){
 				component_list.push($(this).val());
 			});
-			
+
 			$("div#sel_component input:checked").each(function(index,ele){
-			
+
 				var parentID = $(this).parent("p").attr("id");
 				component=$(this).val();
 				product_component_selected=$(this).attr('rel');
@@ -219,20 +219,20 @@
 					alert( component + " already in list");
 				}else{
 					var compo =  $.parseJSON(product_component_selected);
-				
+
 					$("<div id='pro"+counter+"' class='bg-success product_main'><b>"+component+'</b><span data-singh="'+parentID+'" rel="'+counter+'" class="pull-right text-danger  glyphicon glyphicon-trash"></span>'
 					+'<input type="hidden" class="sel-component" name="product_components[]" value="'+component+'"/>'
 					+"</div></p>").appendTo("#product_component_master");
-					
+
 					counter++;
 				}
-			
+
 				$(this).prop("checked",false);
 				$(this).parent("div").css("background-color","#FFF");
 			});
 		});
-		 
-		 
+
+
 		$("#product_component_master").on("click",".glyphicon-trash",function(){
 
 			var parentIDS = $(this).data("singh");
@@ -240,7 +240,7 @@
 
 			var rel = $(this).attr('rel');
 			$(this).parent("div").remove();
-			if ( $(".bg-success").parents("#product_component_master").length < 1 ) { 
+			if ( $(".bg-success").parents("#product_component_master").length < 1 ) {
 				$('#product_component_master').html('');
 				con = 0;
 				counter = 0;
@@ -248,7 +248,7 @@
 			}
 		});
 
-		 
+
 		/* Search Site ID for Inspector */
 			$("#search_tool_siteID_inspector").keyup(function(e){
 				var query=$(this).val();
@@ -263,29 +263,29 @@
 					$.get("<?php echo base_url('SiteId_kare/ajax_search_get_siteID') ?>",
 						{ 'jobCard': jobCard, 'sms_number': sms_number, 'search' : value },
 						function(data){
-						$(".search-jobCardNo").html(data);	 
+						$(".search-jobCardNo").html(data);
 					});
 				}
 			})
-		
+
 			/*
 			$(".search-jobCardNo").on("click",":checkbox",function(){
 				if(this.checked){
 					is).parent("p").css("background-color","#9FF");
 				} else{
-					$(this).parent("p").css("background-color","white"); 
-				}	 
+					$(this).parent("p").css("background-color","white");
+				}
 			});
 			*/
-			
-		
+
+
 		var jobCard_list=[];
 		$("#com_sel_btn_jobCard").click(function(){
 				jobCard_list=[];
 			    $("input.job:hidden").each(function(){
-					jobCard_list.push($(this).val());				       	
+					jobCard_list.push($(this).val());
 				});
-				
+
 			  $("div#sel_jobCardNo input:checked").each(function(index,ele){
 			    var jobCard_key=$(this).val();
 				var jobCard_value=$(this).attr('rel');
@@ -300,29 +300,29 @@
 				$(this).parent("p").css("background-color","#FFF");
 			   });
 		 });
-		 
+
 		 $("#selected_jobCardNo").on("click",".glyphicon-trash",function(){
 			var ids = $(this).attr("rel");
-			
+
 			jobCard_list = jQuery.grep(jobCard_list, function( n ) {
 			  return ( n !== ids );
 			});
 			$(this).parent("p").remove();
 		});
-		
-/* assign client changes 9-1-1991 start 
+
+/* assign client changes 9-1-1991 start
 *
 *
 *
 */
-		
+
 		var clientUser_list=[];
 		$("#com_sel_btn_clientUser").click(function(){
 				clientUser_list=[];
 			    $("input.job:hidden").each(function(){
-					clientUser_list.push($(this).val());				       	
+					clientUser_list.push($(this).val());
 				});
-				
+
 			  $("div#sel_clientUser input:checked").each(function(index,ele){
 			    var clientUser_key=$(this).val();
 				var clientUser_value=$(this).attr('rel');
@@ -337,32 +337,32 @@
 				$(this).parent("p").css("background-color","#FFF");
 			   });
 		 });
-		 
+
 		 $("#selected_clientUser").on("click",".glyphicon-trash",function(){
 			var ids = $(this).attr("rel");
-			
+
 			clientUser_list = jQuery.grep(clientUser_list, function( n ) {
 			  return ( n !== ids );
 			});
 			$(this).parent("p").remove();
 		});
-		
+
 	/* client list START*/
 				 var client_list=[];
 			$("#com_sel_btn_client").click(function(){
-			    // get all the selected values 
+			    // get all the selected values
 				 client_list=[];
 			    $("input.ins:hidden").each(function(){
-					client_list.push($(this).val());				       	
+					client_list.push($(this).val());
 				});
-				
-				
+
+
 			  $("div#sel_client input:checked").each(function(index,ele){
 					var client_key=$(this).val();
 					var client_value=$(this).attr('rel');
 						//alert(client_value);
 					if(client_list.indexOf(client_key)!=-1){
-						alert( client_value + " already in list");	
+						alert( client_value + " already in list");
 					}else{
 					$("<p class='bg-success'>"+client_value+'<span rel="'+client_key+'" class="pull-right text-danger  glyphicon glyphicon-trash"></span>'
 						+'<input type="hidden" class="sel-component ins" name="client_ids[]" value="'+client_key+'"/>'
@@ -372,17 +372,17 @@
 					$(this).parent("p").css("background-color","#FFF");
 			   });
 		 });
-		
+
 		$("#selected_client").on("click",".glyphicon-trash",function(){
 			var ids = $(this).attr("rel");
-			
+
 			client_list = jQuery.grep(client_list, function( n ) {
 			  return ( n !== ids );
 			});
 			$(this).parent("p").remove();
 		});
-		
-/* assign client changes 9-1-1991 end 
+
+/* assign client changes 9-1-1991 end
 *
 *
 *
@@ -398,26 +398,26 @@
 				$.get("<?php echo base_url('Manage_kare/ajax_search_get_inspector') ?>",
 					{ 'search' : value },
 					function(data){
-					$("#sel_inspector").html(data);	 
+					$("#sel_inspector").html(data);
 				});
 		})
-			
-			
+
+
 		 var inspector_list=[];
 		 $("#com_sel_btn_inspector").click(function(){
-			    // get all the selected values 
+			    // get all the selected values
 				 inspector_list=[];
 			    $("input.ins:hidden").each(function(){
-					inspector_list.push($(this).val());				       	
+					inspector_list.push($(this).val());
 				});
-				
-				
+
+
 			  $("div#sel_inspector input:checked").each(function(index,ele){
 					var inspector_key=$(this).val();
 					var inspector_value=$(this).attr('rel');
 						//alert(inspector_value);
 					if(inspector_list.indexOf(inspector_key)!=-1){
-						alert( inspector_value + " already in list");	
+						alert( inspector_value + " already in list");
 					}else{
 					$("<p class='bg-success'>"+inspector_value+'<span rel="'+inspector_key+'" class="pull-right text-danger  glyphicon glyphicon-trash"></span>'
 						+'<input type="hidden" class="sel-component ins" name="inspector_ids[]" value="'+inspector_key+'"/>'
@@ -427,27 +427,27 @@
 					$(this).parent("p").css("background-color","#FFF");
 			   });
 		 });
-		
+
 		$("#selected_inspector").on("click",".glyphicon-trash",function(){
 			var ids = $(this).attr("rel");
-			
+
 			inspector_list = jQuery.grep(inspector_list, function( n ) {
 			  return ( n !== ids );
 			});
 			$(this).parent("p").remove();
 		});
-		
-		
-		
+
+
+
 		/* Validation for master data form submission */
-		
-		$('.master_data_form').submit(function(e) { 
-		
+
+		$('.master_data_form').submit(function(e) {
+
 			var error = false;
 			$('#error_display').html('');
 			var jobCard = $('#product_jobcard').val();
 			var sms = $('#mdata_sms').val();
-			
+
 			if(jobCard == '' && sms == ''){
 				$('#error_display').html('<div  class=" alert alert-danger">'+
 										'<p style="text-align:center; text-transform:capitalize;">'+
@@ -508,16 +508,16 @@
 									'</div>');
 				$('#mdata_jobCard').focus();
 				$('#mdata_sms').focus();
-			}			
+			}
 		});
-		
-		
-		/* 
+
+
+		/*
 			* SMS COMPONENT
 		*/
-		
+
 		$(document).on('change','#jc_number',function () {
-                    var selJobcard = $(this).val(); 
+                    var selJobcard = $(this).val();
 					var target = $(this).attr('rel');
 					if(target =='siteID'){
 						var urls = base_url+"SiteId_kare/ajax_get_sms";
@@ -542,7 +542,7 @@
 								}else{
 									$('.sms_number').html(data);
 								}
-								
+
 								$('#series_name').html('<option value=""> - Select Asset Series - </option>');
 								$('#item_code').html('<option value=""> - Select Asset - </option>');
 							}
@@ -552,15 +552,15 @@
 						$('#series_name').html('<option value=""> - Select Asset Series - </option>');
 						$('#item_code').html('<option value=""> - Select Asset - </option>');
 						$('#sel_jobCardNo').html('');
-						
+
 					}
 		});
-		
+
 		$(document).on('change','#sms_number',function () {
 			var jobCards = $('#jc_number').val();
 			var sms_number = $(this).val();
 			var target = $(this).attr('rel');
-			
+
 			if(sms_number != '' && (target == 'inspector' || target == 'sms_component_series')){
 				$.ajax({
 					url: base_url+"sms_controller/ajax_get_series_from_sms",
@@ -584,8 +584,8 @@
 				}
 			}
 		});
-		
-		$(document).on('change','#series_name',function () {	
+
+		$(document).on('change','#series_name',function () {
 					var series = $(this).val();
 					var target = $(this).attr('rel');
 					if(series != '' && (target == 'series_item'))
@@ -602,7 +602,7 @@
 						$('#item_code').html('<option value=""> - Select Asset - </option>');
 					}
 		});
-		
+
 		/* SMS COMPONENT BY SEARCH */
 		/*
 		$(document).on('click','#search_sms_component',function (e) {
@@ -612,12 +612,12 @@
 			var series 		= $('#series_name').val();
 			var item_code 	= $('#item_code').val();
 			var status 		= $('#status').val();
-			
+
 			if(jobCards=='' && sms_number=='' && series=='' && item_code=='' && status ==''){
 				alert('Please select atleast Job Card to search the list.');
 				return false;
 			}
-			
+
 			if(jobCards != '')
 			{
 				$.ajax({
@@ -633,7 +633,7 @@
 					success: function(data) {
 							$('#sms_result').html(data);
 							$("#sms_table").dataTable();
-							
+
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
 						 alert(errorThrown);
@@ -645,7 +645,7 @@
 			}
 		});
 		*/
-		
+
 		$(document).on('click','.removeData',function(e){
 			e.preventDefault();
 			if(confirm("Do you want to delete them?")) {
@@ -660,8 +660,8 @@
 			   return false;
 			}
 		});
-	
-		
+
+
 		/* *********** Search Sub Assets *********************** */
 		$("#search_tool_sub_assets").keyup(function(e){
 			var query=$(this).val();
@@ -673,10 +673,10 @@
 				$.get("<?php echo base_url('subassets_kare/ajax_get_subAssets') ?>",
 					{ 'search' : value },
 					function(data){
-					$(".search-subAssets").html(data);	 
+					$(".search-subAssets").html(data);
 				});
 		});
-		
+
 
 		//$(".search-subAssets").on("click",":checkbox",function(){
 		$(document).on("click", ".search-subAssets",":checkbox",function(){
@@ -684,25 +684,25 @@
 			if(this.checked){
 				$(this).parent("p").css("background-color","#9FF");
 			} else{
-				$(this).parent("p").css("background-color","white"); 
+				$(this).parent("p").css("background-color","white");
 			}
 		});
-		
+
 		/* Multiple Sub Assets Selection */
 		var subAssets_list=[];
-		
+
 		//$("#com_sel_btn_subAssets").click(function(){
 		$(document).on("click", "#com_sel_btn_subAssets", function(){
 			    // get all the selected values
 			    $("input.subAssets:hidden").each(function(){
-					subAssets_list.push($(this).val());				       	
+					subAssets_list.push($(this).val());
 				});
 
 				$("div#sel_subAssets input:checked").each(function(index,ele){
 					subAssets_key=$(this).val();
 					var subAssets_Value=$(this).attr('rel');
 					if(subAssets_list.indexOf(subAssets_key)!=-1){
-						alert( subAssets_key + " already in list");	
+						alert( subAssets_key + " already in list");
 					}else{
 					$("<p class='bg-success'>"+subAssets_key+'<span rel="'+subAssets_key+'" class="pull-right text-danger  glyphicon glyphicon-trash"></span>'
 						+'<input type="hidden" class="sel-component subAssets" name="sub_assets[]" value="'+subAssets_key+'"/>'
@@ -710,23 +710,23 @@
 					}
 					$(this).prop("checked",false);
 					$(this).parent("p").css("background-color","#FFF");
-					
+
 			   });
 		});
-		
-	/* productedit select multiple subassets Start*/ 
-		
+
+	/* productedit select multiple subassets Start*/
+
 		$(document).on("click", "#com_sel_btn_subAssets_productedit", function(){
 			    // get all the selected values
 			    $("input.subAssets:hidden").each(function(){
-					subAssets_list.push($(this).val());				       	
+					subAssets_list.push($(this).val());
 				});
 
 				$("div#sel_subAssets_productedit input:checked").each(function(index,ele){
 					subAssets_key=$(this).val();
 					var subAssets_Value=$(this).attr('rel');
 					if(subAssets_list.indexOf(subAssets_key)!=-1){
-						alert( subAssets_Value + " already in list");	
+						alert( subAssets_Value + " already in list");
 					}else{
 					$("<p class='bg-success'>"+subAssets_Value+'<span rel="'+subAssets_key+'" class="pull-right text-danger  glyphicon glyphicon-trash"></span>'
 						+'<input type="hidden" class="sel-component subAssets" name="sub_assets[]" value="'+subAssets_key+'"/>'
@@ -734,14 +734,14 @@
 					}
 					$(this).prop("checked",false);
 					$(this).parent("p").css("background-color","#FFF");
-					
-			   });   
+
+			   });
 		});
-		
-		
-		
-	/* productedit select multiple subassets END*/ 
-		
+
+
+
+	/* productedit select multiple subassets END*/
+
 		$(document).on("click","#selected_subAssets .glyphicon-trash",function(){
 			var ids = $(this).attr("rel");
 			subAssets_list = jQuery.grep(subAssets_list, function( n ) {
@@ -752,21 +752,21 @@
 		});
 		/* End of Sub Assets */
 
-		
+
 		/* Assets/COMPONENT for product category 13-12-2016  Start */
 		var assets_list=[];
 		$("#com_sel_btn_assets").click(function(){
-			    // get all the selected values 
-				
+			    // get all the selected values
+
 			    $("input.asset:hidden").each(function(){
-					assets_list.push($(this).val());				       	
+					assets_list.push($(this).val());
 				});
-				
-				
+
+
 				$("div#sel_assets input:checked").each(function(index,ele){
 					var assets_key=$(this).val();
 					if(assets_list.indexOf(assets_key)!=-1){
-						alert( assets_key + " already in list");	
+						alert( assets_key + " already in list");
 					}else{
 					$("<p class='bg-success'>"+assets_key+'<span rel="'+assets_key+'" class="pull-right text-danger  glyphicon glyphicon-trash"></span>'
 						+'<input type="hidden" class="sel-component asset" name="assets[]" value="'+assets_key+'"/>'
@@ -782,16 +782,16 @@
 			assets_list = jQuery.grep(assets_list, function( n ) {
 			  return ( n !== ids );
 			});
-			
+
 			$(this).parent("p").remove();
-			
+
 		});
 
 		$(document).on("click",".search-Assets :checkbox",function(){
 			if(this.checked){
 				$(this).parent("p").css("background-color","#9FF");
 			} else{
-				$(this).parent("p").css("background-color","white"); 
+				$(this).parent("p").css("background-color","white");
 			}
 		});
 		/* Assets/COMPONENT for product category 13-12-2016 End */
@@ -803,9 +803,9 @@
 			// get all the selected values
 			assetSeries_list=[];
 			$("input.assetSeries:hidden").each(function(){
-				assetSeries_list.push($(this).val());			       	
+				assetSeries_list.push($(this).val());
 			});
-			
+
 			$("div#sel_assets_series input:checked").each(function(index,ele){
 				var assets_series_key=$(this).val();
 				if(assetSeries_list.indexOf(assets_series_key)!=-1){
@@ -827,23 +827,23 @@
 			$(this).parent("p").remove();
 		});
 		/* Assets Series/product for product category 13-12-2016  End */
-		
-		
-		
+
+
+
 		/* Expected result Start */
 		var expectedResult_list=[];
 		//$("#com_sel_btn_expectedResult").click(function(){
 		$(document).on("click", "#com_sel_btn_expectedResult", function(){
 			// get all the selected values
 			$("input.ins:hidden").each(function(){
-				expectedResult_list.push($(this).val());			       	
+				expectedResult_list.push($(this).val());
 			});
-			
+
 			$("div#sel_expectedResult input:checked").each(function(index,ele){
 				var expectedResult_key=$(this).val();
 				var expectedResult_Value=$(this).attr('rel');
 				if(expectedResult_list.indexOf(expectedResult_key)!=-1){
-					alert( expectedResult_Value + " is already in selected list");	
+					alert( expectedResult_Value + " is already in selected list");
 				}else{
 				$("<p class='bg-success'>"+expectedResult_Value+'<span rel="'+expectedResult_key+'" class="pull-right text-danger glyphicon glyphicon-trash"></span>'
 					+'<input type="hidden" class="sel-component ins" name="expectedResult[]" value="'+expectedResult_key+'"/>'
@@ -853,29 +853,29 @@
 				$(this).parent("p").css("background-color","#FFF");
 		   });
 		});
-		
+
 		$(document).on("click","#selected_expectedResult .glyphicon-trash",function(){
 			var ids = $(this).attr("rel");
-			
+
 			expectedResult_list = jQuery.grep(expectedResult_list, function( n ) {
 			  return ( n !== ids );
 			});
 			$(this).parent("p").remove();
 		});
-		
-		
-		
+
+
+
 		/* Expected result Start */
-		
+
 		var observations_list=[];
 		//$("#com_sel_btn_observation").click(function(){
 		$(document).on("click", "#com_sel_btn_observation", function(){
 			// get all the selected values
 			$("input.ins:hidden").each(function(){
-				observations_list.push($(this).val());			       	
+				observations_list.push($(this).val());
 			});
-			
-			
+
+
 			$("div#sel_observation input:checked").each(function(index,ele){
 				var observation_key=$(this).val();
 				var observation_Value=$(this).attr('rel');
@@ -890,22 +890,22 @@
 				$(this).parent("p").css("background-color","#FFF");
 		   });
 		});
-		
+
 		//$("#selected_observation").on("click",".glyphicon-trash",function(){
 		$(document).on("click","#selected_observation .glyphicon-trash",function(){
 			var ids = $(this).attr("rel");
-			
+
 			observations_list = jQuery.grep(observations_list, function( n ) {
 			  return ( n !== ids );
 			});
 			$(this).parent("p").remove();
 		});
-		
-		
+
+
 	});		/* end of document . ready function */
-		
-		
-		
+
+
+
 	function isNumber(evt) {
         var iKeyCode = (evt.which) ? evt.which : evt.keyCode
         if ((iKeyCode < 48 || iKeyCode > 57)){
@@ -915,7 +915,7 @@
 			return true;
 		}
 	}
-	
+
 	function updateDue() {
 		var total = parseInt(document.getElementById("component_no").value);
 		var val2 = parseInt(document.getElementById("component_lines").value);
@@ -926,10 +926,10 @@
 			var ansD = document.getElementById("component_result");
 			ansD.value = '';
 		}
-		
-		
+
+
 	}
-	
+
 	function myFunction() {
 		if (confirm("Do you want to Delete it!") == true) {
 			return true;
@@ -937,20 +937,20 @@
 			return false;
 		}
 	}
-	
+
 	$(document).ready(function(){
-		
+
 		$(document).on('focus','.datepicker',function(){
-		
+
 			$(this).datepicker({
 				changeMonth:true,
 				changeYear:true,
 				dateFormat: 'dd/mm/yy',
 			});
-			
+
 		});
-		
-		
+
+
 		/* Search Jobcard in Assign Inspector */
 		$("#search_tool_jobcard_inspector").keyup(function(e){
 			var query=$(this).val();
@@ -969,9 +969,9 @@
 		})
 	});
 	
-	
-			
-			
+
+
+
 </script>
 </body>
 </html>

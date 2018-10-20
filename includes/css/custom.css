@@ -132,11 +132,11 @@ div#product_component .glyphicon-trash{
 	cursor:pointer;
 }
 .error{
-  color:#C03;	
+  color:#C03;
 	}
 #components_table_wrapper table.dataTable, #products_table_wrapper table.dataTable{
 	border-collapse:collapse;
-}	
+}
 
 .backbutton	{
 	 margin-left: 530px;
@@ -235,7 +235,7 @@ div#selected_inspector .glyphicon-trash{
 .backColorTH{
 	background-color:#f7c02f;
 }
-	
+
 .search-container, .component-container {
     background-color: white;
     height: 150px;
@@ -257,7 +257,7 @@ th {
     background-color: #333333 ;
     color: white ;
 	text-align: center;
-	
+
 }
 table {
 	border-collapse: collapse !important;
@@ -280,10 +280,10 @@ table {
 
 /* input type Css end*/
 
-.inspection_form{ 
+.inspection_form{
 	background: transparent;
-	border: none; 
-	border-bottom: 1px solid #000000; 
+	border: none;
+	border-bottom: 1px solid #000000;
 }
 .inputDiv{
 	background-color : #DCE0D7;
@@ -400,7 +400,7 @@ a.disabled{
 }
 
 /* Add Animation */
-.modal-content, #caption {    
+.modal-content, #caption {
     -webkit-animation-name: zoom;
     -webkit-animation-duration: 0.6s;
     animation-name: zoom;
@@ -408,12 +408,12 @@ a.disabled{
 }
 
 @-webkit-keyframes zoom {
-    from {-webkit-transform:scale(0)} 
+    from {-webkit-transform:scale(0)}
     to {-webkit-transform:scale(1)}
 }
 
 @keyframes zoom {
-    from {transform:scale(0)} 
+    from {transform:scale(0)}
     to {transform:scale(1)}
 }
 
@@ -464,13 +464,13 @@ a.disabled{
 }
 
 
-#client_Infonet h4,h5{	
+#client_Infonet h4,h5{
 	color: #ccc;
 }
-#client_Infonet a{	
+#client_Infonet a{
 	text-decoration: none;
 }
-#view_productdetails_table .glyphicon{	
+#view_productdetails_table .glyphicon{
 	text-decoration: none;
 	font-size:20px;
 }
@@ -510,8 +510,8 @@ h4 {
 		color: #fffcfc;
 		background-color: #000000;
 		letter-spacing: .15em;
-		text-shadow: 1px -1px 0 #767676, 
-					-1px 2px 1px #737272, 
+		text-shadow: 1px -1px 0 #767676,
+					-1px 2px 1px #737272,
 					-2px 4px 1px #767474;
 	}
   .carousel-inner > .item > a > img,
@@ -545,7 +545,7 @@ h4 {
   }
   .tab-img-data .nav-tabs,
   .tab-img-data .nav-tabs > li.active > a,
-  .tab-img-data .nav-tabs > li.active > a:hover, 
+  .tab-img-data .nav-tabs > li.active > a:hover,
   .tab-img-data .nav-tabs > li.active > a:focus {
     border: none;
   }
@@ -618,8 +618,8 @@ h4 {
   .search_icon {
     padding-top: 15px;
   }
-  
-  
+
+
   .nav-justified > li > a {
     background-color: #b7d557 !important;
    /* border: 1px solid #f7c02f; */
@@ -628,4 +628,11 @@ h4 {
     font-weight: normal;
     border-radius: 0;
     padding: 20px !important;
+  }
+
+  .green-text{
+  	color: #85cb00 !important;
+  }
+  .red-text{
+  	color: #da273f !important;
   }

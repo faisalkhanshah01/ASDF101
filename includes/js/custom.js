@@ -152,11 +152,10 @@ $(document).ready(function() {
 	});
 
 
-// pdm dynamic row creation starts here
-	var countpdm = 2;
+	var countpdm = 1;
 	$("#pdmbtnAddRow").on("click",function(){
-		$("#Table1").append('<table class="table siteID_table" id="site_id_table'+countpdm+'" data-id="'+countpdm+'">'+
-		'<tr><td colspan="6"><legend  class="home-heading">Step No. '+countpdm+'</legend></td></tr>'+
+		$("#Table1").append('<table class="table siteID_table" id="site_id_table'+countpdm+'" data-id="'+countpdm+'">'+=
+								'<tr><td colspan="6"><legend  class="home-heading">Step</legend></td></tr>'+
 								'<tr>'+
 									'<td>'+
 										'<div class="form-group col-md-12">'+
@@ -226,7 +225,7 @@ $(document).ready(function() {
 							'</table>');
 		countpdm++;
 	});
-// pdm dynamic row creation ends here
+
 // Date picker
 
 	$(document).on('focus','.date1',function(){
