@@ -17,7 +17,7 @@
         $id=$this->db->insert($table,$data);
         #echo $this->db->last_query();
         if($id){
-            return true;
+            return $id;
         }else{
              echo $this->db->_error_message();
             return false;
