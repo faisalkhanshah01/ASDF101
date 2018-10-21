@@ -70,7 +70,11 @@
                          <div class="col-md-12">
                          <div class="panel" id="panel-1">
                              <div class="panel-head">
-                                 <legend class="home-heading">Step No.1 <i id="close-1" onclick="collapsebox(this)" class="green-text pull-right glyphicon glyphicon-plus"></i></legend>
+                                 <legend class="home-heading">
+                                     <span class="step-label">Step No.1</span> 
+                                     <i id="close-1" onclick="collapsebox(this)" class="green-text pull-right glyphicon glyphicon-plus"></i>
+                                     
+                                 </legend>
                              </div>
                             <div class="panel-body" style="display:none;">
                             <div class="col-md-6">
@@ -152,26 +156,61 @@
     <script type="text/javascript">
     var secCount=0;
     $(document).on('click','#btn_addstep',function(){
-        // debugger;
-        secCount++;
+        
+       debugger;
+         
+       var p = new Promise(function(resolve,reject){   
+            secCount++;
+            var template= $('.section:first').clone();
+              var section= template.clone().find(":input").each(function(index,ele){
+                        var newid=$(this).attr('id')+secCount;
+                        $(this).prev('label').attr('for',newid);
+                        this.id=newid;
+               }).end();
+              $('<i class="red-text pull-right glyphicon glyphicon-trash" style="margin: 0px 5px;"></i>').insertAfter(section.find('.home-heading .step-label'));
+                section.appendTo('.sections');  
+              resolve();
+        }); 
+        
+        p.then(function(){
+                updateSectionLabel();
+        });
+        
+        
+        /*secCount++;
         var template= $('.section:first').clone();
-
           var section= template.clone().find(":input").each(function(index,ele){
                     var newid=$(this).attr('id')+secCount;
                     $(this).prev('label').attr('for',newid);
                     this.id=newid;
            }).end();
-           var stepadd = section.html().replace('Step No.1','Step No.'+(secCount+1)).replace('panel-1','panel-'+(secCount+1)).replace('close-1','close-'+(secCount+1));
-           section = $('<div class="row section">'+stepadd+'</div>');
-         section.appendTo('.sections');
+          $('<i  onclick="delSection()" class="red-text pull-right glyphicon glyphicon-trash" style="margin: 0px 5px;"></i>').insertAfter(section.find('.home-heading .step-label'));
+          // var stepadd = section.html().replace('Step No.1','Step No.'+(secCount+1)).replace('panel-1','panel-'+(secCount+1)).replace('close-1','close-'+(secCount+1));
+          // section = $('<div class="row section">'+stepadd+'</div>');
+          section.appendTo('.sections');
+         */ 
 
     });
+    
+    function updateSectionLabel(){
+        $('.sections .section').each(function(index,ele){
+               $(this).find('.home-heading .step-label').html("Step No : "+(index+1));
+           });   
+    }
+   
+    $(document).on('click','.home-heading .glyphicon-trash',function(){
+           $(this).parents('.section').remove();
+            updateSectionLabel();   
+    });
+    
+    
+    
     function collapsebox(a){
       let id = $(a).attr('id').split('-')[1];
       let panelbody = $("#panel-"+id).find('.panel-body');
       if(panelbody.css('display')=='none'){
-      panelbody.css('display','block');
-      $("#close-"+id).attr('class','red-text pull-right glyphicon glyphicon-minus');
+            panelbody.css('display','block');
+            $("#close-"+id).attr('class','red-text pull-right glyphicon glyphicon-minus');
       }
       else{
         panelbody.css('display','none');
