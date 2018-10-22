@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 // ade base url for flexi auth (www.yourdomaine.ext/subfolder)
 //$config['base_url'] = 'http://192.168.1.3/Mysites/kare/';  //  http://192.168.1.58/arresto
-//$config['base_url'] = 'http://arresto.in/kare';  
+//$config['base_url'] = 'http://arresto.in/kare';
 //$config['base_url'] = 'http://localhost/arresto';
 
 $config['base_url'] = 'http://localhost/arresto2018/';
@@ -513,14 +513,14 @@ $config['conf_language'] = array('eng'=>array('description'=>'en_description','l
 
 
 ###########
-# Admin Client invitation msg and email settings 
+# Admin Client invitation msg and email settings
 
 $config['notification_invite'] 						= '
 Dear Mam/Sir,<br><br>
 
 Greetings from Arresto Solutions.<br><br>
 
-We thank you for your interest in KARE software. To move forward we would need your company details. Kindly click on the link below and update the form. Please select the plan suitable for your organizations and also select the number of KARE Sole modules you would be requiring. 
+We thank you for your interest in KARE software. To move forward we would need your company details. Kindly click on the link below and update the form. Please select the plan suitable for your organizations and also select the number of KARE Sole modules you would be requiring.
 <br><br>
 You may make your payment by clicking on the ‘Make Payment’ tab.<br><br>
 Once the payment is received, you will get a license key within 48 hrs to activate your software. We would be happy to appoint an account support manager who will help you through the installation process.

@@ -1,5 +1,5 @@
 <?php
-#echo $base_url; 
+#echo $base_url;
 #die;
 
 $CI = & get_instance();
@@ -236,7 +236,7 @@ $col_class = $_SESSION['client']['color_code'];
                                         echo "Manage Sub-Assets";
                                     }
                                     ?></a>
-                            </li> 
+                            </li>
                             <li>
                                 <a href="<?php echo $base_url; ?>manage_kare/assets_list" style="background-color: <?php echo $col_class; ?> !important; border: 1px solid <?php echo $col_class; ?> !important;"><?php
                                     if ($this->data['lang']['manage_assets']['description'] != '') {
@@ -348,7 +348,7 @@ $col_class = $_SESSION['client']['color_code'];
                     echo "Manage Standard/Certicate";
                 }
                     ?></a>
-                            </li>           
+                            </li>
 
 
 
@@ -380,8 +380,8 @@ $col_class = $_SESSION['client']['color_code'];
       </li>
       </ul>
       </li>
-     * 
-     */ ?>   
+     *
+     */ ?>
 
       <li class="dropdown">
       <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" style="background-color: <?php echo $col_class; ?> !important; border: 1px solid <?php echo $col_class; ?> !important;">Asm<b class="caret"></b></a>
@@ -393,7 +393,18 @@ $col_class = $_SESSION['client']['color_code'];
       </li>
       </ul>
       </li>
-                                  
+
+      <li class="dropdown">
+      <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" style="background-color: <?php echo $col_class; ?> !important; border: 1px solid <?php echo $col_class; ?> !important;">Periodic Maintenance<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+      <li>
+      <a href="<?php echo $base_url; ?>pdm/" style="background-color: <?php echo $col_class; ?> !important; border: 1px solid <?php echo $col_class; ?> !important;">
+         Insert Periodic Maintenance
+      </a>
+      </li>
+      </ul>
+      </li>
+
 
 
                     <?php if ($group_id == 11 || $group_id == 10) { ?>
@@ -424,7 +435,7 @@ $col_class = $_SESSION['client']['color_code'];
                         }
                         ?></a>
                                 </li>
-                            </ul>		
+                            </ul>
                                     <?php } ?>
 
                                     <?php if ($group_id == 11 || $group_id == 10) { ?>
@@ -435,7 +446,7 @@ $col_class = $_SESSION['client']['color_code'];
                                 } else {
                                     echo "Data on Demand";
                                 }
-                                ?></a>						
+                                ?></a>
                         </li>
                                     <?php } ?>
 
@@ -516,7 +527,7 @@ $col_class = $_SESSION['client']['color_code'];
                         } else {
                             echo "User Groups";
                         }
-                        ?></a>			
+                        ?></a>
                                 </li>
                     <?php } ?>
                     <?php if ($this->flexi_auth->is_privileged('View Privileges') || $this->flexi_auth->is_privileged('Insert Privileges') || $this->flexi_auth->is_privileged('Update Privileges') || $this->flexi_auth->is_privileged('Delete Privileges')) { ?>
@@ -527,11 +538,11 @@ $col_class = $_SESSION['client']['color_code'];
                         } else {
                             echo "User Privileges";
                         }
-                        ?></a>			
+                        ?></a>
                                 </li>
                             <?php } ?>
-                                
-                         <?php /*       
+
+                         <?php /*
                             <li>
                                 <a href="<?php echo $base_url; ?>auth_admin/list_user_status/active" style="background-color: <?php echo $col_class; ?> !important; border: 1px solid <?php echo $col_class; ?> !important;"><?php
                         if ($this->data['lang']['active_users']['description'] != '') {
@@ -540,7 +551,7 @@ $col_class = $_SESSION['client']['color_code'];
                             echo "Active Users";
                         }
                             ?></a>
-                            </li>	
+                            </li>
                             <li>
                                 <a href="<?php echo $base_url; ?>auth_admin/list_user_status/inactive" style="background-color: <?php echo $col_class; ?> !important; border: 1px solid <?php echo $col_class; ?> !important;"><?php
                                 if ($this->data['lang']['inactive_users']['description'] != '') {
@@ -550,8 +561,8 @@ $col_class = $_SESSION['client']['color_code'];
                                 }
                             ?></a>
                             </li>
-                          */?>  
-                            
+                          */?>
+
                             <li>
                                 <a href="<?php echo $base_url; ?>auth_admin/delete_unactivated_users" style="background-color: <?php echo $col_class; ?> !important; border: 1px solid <?php echo $col_class; ?> !important;"><?php
                 if ($this->data['lang']['unactivated_users']['description'] != '') {
@@ -561,7 +572,7 @@ $col_class = $_SESSION['client']['color_code'];
                 }
                             ?></a>
                             </li>
-                            
+
                             <li>
                                 <a href="<?php echo $base_url; ?>auth_admin/failed_login_users" style="background-color: <?php echo $col_class; ?> !important; border: 1px solid <?php echo $col_class; ?> !important;"><?php
                         if ($this->data['lang']['failed_logins']['description'] != '') {
@@ -569,7 +580,7 @@ $col_class = $_SESSION['client']['color_code'];
                         } else {
                             echo "Failed Logins";
                         }
-                            ?></a>			
+                            ?></a>
                             </li>
                             <li>
                                 <a href="<?php echo $base_url; ?>auth_admin/password_change" style="background-color: <?php echo $col_class; ?> !important; border: 1px solid <?php echo $col_class; ?> !important;"><?php
@@ -578,7 +589,7 @@ $col_class = $_SESSION['client']['color_code'];
                                     } else {
                                         echo "Change User Password";
                                     }
-                                    ?></a>			
+                                    ?></a>
                             </li>
                             <li>
                                 <a href="<?php echo $base_url; ?>auth_admin/logs" style="background-color: <?php echo $col_class; ?> !important; border: 1px solid <?php echo $col_class; ?> !important;"><?php
@@ -587,7 +598,7 @@ $col_class = $_SESSION['client']['color_code'];
                                 } else {
                                     echo "Logs";
                                 }
-                                    ?></a>			
+                                    ?></a>
                             </li>
                             <li>
                                 <a href="<?php echo $base_url; ?>auth_admin/imei_no" style="background-color: <?php echo $col_class; ?> !important; border: 1px solid <?php echo $col_class; ?> !important;"><?php
@@ -609,9 +620,9 @@ $col_class = $_SESSION['client']['color_code'];
                                     ?></a>
                             </li>
 
-                        </ul>		
+                        </ul>
                     </li>
-                        <?php } // end: is_Admin 
+                        <?php } // end: is_Admin
                         ?>
 
                                 <?php /* if ( $group_id == 9){ ?>
@@ -666,7 +677,7 @@ if ($this->data['lang']['profile']['description'] != '') {
 } else {
     echo "Profile";
 }
-?> <b class="caret"></b></a>	
+?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-header"><?php
 if ($this->data['lang']['select']['description'] != '') {
@@ -738,11 +749,11 @@ if ($this->data['lang']['change_password']['description'] != '') {
         }
         ?></a>
                                 </li>
-    <?php } ?>		
+    <?php } ?>
 
-<?php } ?>	
+<?php } ?>
 
-                    </ul>		
+                    </ul>
                 </li>
             </ul>
         </div>
