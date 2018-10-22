@@ -64,21 +64,14 @@
                         </div>
                     </div>
 
-                    <div class="sections">
+                    <div class="">
 
-                        <div class="row section">
+                        <div class="row ">
                          <div class="col-md-12">
                             <!-- start -->
-                            <style type="text/css">
-                                /* show the move cursor as the user moves the mouse over the panel header.*/
-                                #draggablePanelList .panel-heading {
-                                    cursor: move;
-                                }
-                            </style>
-
                             <!-- Bootstrap 3 panel list. -->
-                            <ul id="draggablePanelList" class="list-unstyled">
-                                <li class="panel panel-info" id="panel-1">
+                            <ul id="draggablePanelList" class="sections list-unstyled">
+                                <li class="panel panel-info section" id="panel-1">
                                     <div class="panel-heading">
                                       <span class="step-label">Step No.1</span>
                                       <i id="close-1" onclick="collapsebox(this)" class="green-text pull-right glyphicon glyphicon-plus"></i>
