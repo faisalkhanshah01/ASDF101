@@ -68,64 +68,72 @@
 
                         <div class="row section">
                          <div class="col-md-12">
-                         <div class="panel" id="panel-1">
-                             <div class="panel-head">
-                                 <legend class="home-heading">
-                                     <span class="step-label">Step No.1</span> 
-                                     <i id="close-1" onclick="collapsebox(this)" class="green-text pull-right glyphicon glyphicon-plus"></i>
-                                     
-                                 </legend>
-                             </div>
-                            <div class="panel-body" style="display:none;">
-                            <div class="col-md-6">
-                                <div class="form-group col-md-12">
-                                    <label for="group" class="control-label">PDM Step Name</label>
-                                    <input type="text" class="form-control" name="pdm_step[]" id="pdm_step"  required/>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="group" class="control-label">Process</label>
-                                    <textarea class="form-control" name="pdm_process[]" id="pdm_process" required></textarea>
-                                </div>
+                            <!-- start -->
+                            <style type="text/css">
+                                /* show the move cursor as the user moves the mouse over the panel header.*/
+                                #draggablePanelList .panel-heading {
+                                    cursor: move;
+                                }
+                            </style>
 
-                                <div class="form-group col-md-12">
-                                    <label for="group" class="control-label">Observation</label>
-                                    <select class="form-control" name="pdm_observations[]" id="pdm_observation"  required>
-                                        <?php foreach($observations as $key=>$val){?>
-                                                <option value="<?php echo $key;  ?>"><?php echo $val;  ?></option>
-                                        <?php } ?>
-                                    </select>
+                            <!-- Bootstrap 3 panel list. -->
+                            <ul id="draggablePanelList" class="list-unstyled">
+                                <li class="panel panel-info" id="panel-1">
+                                    <div class="panel-heading">
+                                      <span class="step-label">Step No.1</span>
+                                      <i id="close-1" onclick="collapsebox(this)" class="green-text pull-right glyphicon glyphicon-plus"></i>
+                                    </div>
+                                    <div class="panel-body" style="display:none;">
+                                      <div class="col-md-6">
+                                          <div class="form-group col-md-12">
+                                              <label for="group" class="control-label">PDM Step Name</label>
+                                              <input type="text" class="form-control" name="pdm_step[]" id="pdm_step"  required/>
+                                          </div>
+                                          <div class="form-group col-md-12">
+                                              <label for="group" class="control-label">Process</label>
+                                              <textarea class="form-control" name="pdm_process[]" id="pdm_process" required></textarea>
+                                          </div>
 
-                                </div>
+                                          <div class="form-group col-md-12">
+                                              <label for="group" class="control-label">Observation</label>
+                                              <select class="form-control" name="pdm_observations[]" id="pdm_observation"  required>
+                                                  <?php foreach($observations as $key=>$val){?>
+                                                          <option value="<?php echo $key;  ?>"><?php echo $val;  ?></option>
+                                                  <?php } ?>
+                                              </select>
 
-                                <div class="form-group col-md-12">
-                                    <label for="group" class="control-label">Expected Results</label>
-                                    <select class="form-control" name="pdm_expresults[]" id="pdm_expresults"   >
-                                        <?php foreach($expresults as $key=>$val){?>
-                                                <option value="<?php echo $key;  ?>"><?php echo $val;  ?></option>
-                                        <?php } ?>
-                                    </select>
+                                          </div>
 
-                                </div>
+                                          <div class="form-group col-md-12">
+                                              <label for="group" class="control-label">Expected Results</label>
+                                              <select class="form-control" name="pdm_expresults[]" id="pdm_expresults"   >
+                                                  <?php foreach($expresults as $key=>$val){?>
+                                                          <option value="<?php echo $key;  ?>"><?php echo $val;  ?></option>
+                                                  <?php } ?>
+                                              </select>
 
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group col-md-12">
-                                    <label for="group" class="control-label">Upload Document</label>
-                                    <input type="file" class="form-control" name="pdm_document[]" id="pdm_document"  />
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="group" class="control-label">Upload Media</label>
-                                    <input type="file" id="pdm_media" class="form-control" name="pdm_media[]" id="pdm_media" />
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="group" class="control-label">Upload Image</label>
-                                    <input type="file" id="group" class="form-control" name="pdm_image[]" id="pdm_image"/>
-                                </div>
+                                          </div>
 
-                            </div>
-                            </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <div class="form-group col-md-12">
+                                              <label for="group" class="control-label">Upload Document</label>
+                                              <input type="file" class="form-control" name="pdm_document[]" id="pdm_document"  />
+                                          </div>
+                                          <div class="form-group col-md-12">
+                                              <label for="group" class="control-label">Upload Media</label>
+                                              <input type="file" id="pdm_media" class="form-control" name="pdm_media[]" id="pdm_media" />
+                                          </div>
+                                          <div class="form-group col-md-12">
+                                              <label for="group" class="control-label">Upload Image</label>
+                                              <input type="file" id="group" class="form-control" name="pdm_image[]" id="pdm_image"/>
+                                          </div>
 
-                        </div>
+                                      </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- end -->
                       </div>
                      </div>
                         <!-- /.section -->
@@ -136,12 +144,14 @@
 
 
 
+
                     <div class="form-group" >
                         <div class="col-md-offset-4 col-md-8" style="margin-top:30px;">
                             <input type="hidden" name="master_id"  id="master_id" value="" />
                             <input type="submit" name="submit_siteID" class="btn btn-primary" id="submit_mdata" value="SAVE PERIODIC MAINTENANCE DATA" />
                         </div>
                     </div>
+
                     <!--</form>-->
                 <?php echo form_close(); ?>
                 </div>
@@ -156,10 +166,10 @@
     <script type="text/javascript">
     var secCount=0;
     $(document).on('click','#btn_addstep',function(){
-        
+
        debugger;
-         
-       var p = new Promise(function(resolve,reject){   
+
+       var p = new Promise(function(resolve,reject){
             secCount++;
             var template= $('.section:first').clone();
               var section= template.clone().find(":input").each(function(index,ele){
@@ -168,15 +178,15 @@
                         this.id=newid;
                }).end();
               $('<i class="red-text pull-right glyphicon glyphicon-trash" style="margin: 0px 5px;"></i>').insertAfter(section.find('.home-heading .step-label'));
-                section.appendTo('.sections');  
+                section.appendTo('.sections');
               resolve();
-        }); 
-        
+        });
+
         p.then(function(){
                 updateSectionLabel();
         });
-        
-        
+
+
         /*secCount++;
         var template= $('.section:first').clone();
           var section= template.clone().find(":input").each(function(index,ele){
@@ -188,23 +198,23 @@
           // var stepadd = section.html().replace('Step No.1','Step No.'+(secCount+1)).replace('panel-1','panel-'+(secCount+1)).replace('close-1','close-'+(secCount+1));
           // section = $('<div class="row section">'+stepadd+'</div>');
           section.appendTo('.sections');
-         */ 
+         */
 
     });
-    
+
     function updateSectionLabel(){
         $('.sections .section').each(function(index,ele){
                $(this).find('.home-heading .step-label').html("Step No : "+(index+1));
-           });   
+           });
     }
-   
+
     $(document).on('click','.home-heading .glyphicon-trash',function(){
            $(this).parents('.section').remove();
-            updateSectionLabel();   
+            updateSectionLabel();
     });
-    
-    
-    
+
+
+
     function collapsebox(a){
       let id = $(a).attr('id').split('-')[1];
       let panelbody = $("#panel-"+id).find('.panel-body');
@@ -218,4 +228,23 @@
       }
 
     }
+
+
+    jQuery(function($) {
+    var panelList = $('#draggablePanelList');
+
+    panelList.sortable({
+        // Only make the .panel-heading child elements support dragging.
+        // Omit this to make then entire <li>...</li> draggable.
+        handle: '.panel-heading',
+        update: function() {
+            $('.panel', panelList).each(function(index, elem) {
+                 var $listItem = $(elem),
+                     newIndex = $listItem.index();
+
+                 // Persist the new indices.
+            });
+        }
+    });
+});
     </script>
