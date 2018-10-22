@@ -481,7 +481,7 @@ class Manage_kare extends CI_Controller{
                         $frequency_hours        =	$this->input->post('frequency_hours');
                         $lifespan_month         =	$this->input->post('lifespan_month');
                         $lifespan_hours         =	$this->input->post('lifespan_hours');
-                        $permain                =	$this->input->post('permain');
+                        $pdm_frequency                =	$this->input->post('pdm_frequency');
 			
 			// set form validation 
 			$this->form_validation->set_rules('product_code','Product Code','required');
@@ -535,7 +535,7 @@ class Manage_kare extends CI_Controller{
                                                                 'component_frequency_hours'=>$frequency_hours,
                                                                 'component_lifespan_month'=>$lifespan_month,    
                                                                 'component_lifespan_hours'=>$lifespan_hours,
-                                                                'component_pm_freq'=>$permain,                      
+                                                                'component_pdm_frequency'=>$pdm_frequency,                      
 								'component_created_date'=>$createdDate,
 								'infonet_status'=>$infonet_status_status,
 								'standard_certificate_id'=>$standards_certificate,
@@ -730,7 +730,7 @@ class Manage_kare extends CI_Controller{
                                 $dbdata['component_frequency_hours']    =	$this->input->post('frequency_hours');
                                 $dbdata['component_lifespan_month']     =	$this->input->post('lifespan_month');
                                 $dbdata['component_lifespan_hours']     =	$this->input->post('lifespan_hours');
-                                $dbdata['component_pm_freq']            =	$this->input->post('permain');
+                                $dbdata['component_pdm_frequency']            =	$this->input->post('pdm_frequency');
                         
 				$dbdata['standard_certificate_id']	=       $this->input->post('standards_certificate');
 				$dbdata['ec_type_certificate_text']	=       $this->input->post('ec_type_certificate_txt');
@@ -1021,20 +1021,73 @@ class Manage_kare extends CI_Controller{
 						   $data[$key]['component_work_permit'] = strtolower(trim($cell->getValue()));
 						break;
                                                 case 'L':
-						    $data[$key]['component_frequency_asset'] = strtolower(trim($cell->getValue()));
+						    $data[$key]['component_frequency_asset'] = trim($cell->getValue());
 						break;
                                                 case 'M':
-						    $data[$key]['component_frequency_hours'] = strtolower(trim($cell->getValue()));
+						    $data[$key]['component_frequency_hours'] = trim($cell->getValue());
 						break;
                                                 case 'N':
-						    $data[$key]['component_lifespan_month'] = strtolower(trim($cell->getValue()));
+						    $data[$key]['component_lifespan_month'] = trim($cell->getValue());
 						break;
                                                 case 'O':
-						    $data[$key]['component_lifespan_hours'] = strtolower(trim($cell->getValue()));
+						    $data[$key]['component_lifespan_hours'] = trim($cell->getValue());
 						break;                                                                                     
                                                 case 'P':
-							$data[$key]['infonet_status'] = strtolower(trim($cell->getValue()));
+						     $data[$key]['component_pdm_frequency'] = trim($cell->getValue());
 						break;
+                                                case 'Q':
+                                                   # in DB infonet === knowledgetree
+							$data[$key]['infonet_status'] = trim($cell->getValue());
+						break;
+                                                case 'R':
+							if($cell->getValue() !=''){
+							$stantardsStr	=	trim($cell->getValue());
+							$condFilterArry  =  array('type' => 'Standards', 'name'=> $stantardsStr, 'status'=>1 );
+							$certificateArray  = $this->Subassets_model->get_manage_cert_filt_chk_result($condFilterArry);
+                                                            if($certificateArray){
+                                                                    $data[$key]['standard_certificate_id']= $certificateArray['id'];
+                                                            }else{
+                                                                    $data[$key]['standard_certificate_id']= '';
+                                                            }
+                                                        }else{
+                                                           $data[$key]['standard_certificate_id']= '';
+                                                        }
+						break;
+                                                case 'S':
+							$data[$key]['ec_type_certificate_text'] = strtolower(trim($cell->getValue()));
+						break;
+                                                case 'T':
+						if($cell->getValue() !=''){
+							$notifyBodyStr	=	trim($cell->getValue());
+							$condFilterArry  =  array('type' => 'Notified Body(Certification)', 'name'=> $notifyBodyStr, 'status'=>1 );
+							$certificateArray  = $this->Subassets_model->get_manage_cert_filt_chk_result($condFilterArry);
+							if($certificateArray){
+								$data[$key]['notified_body_certificate_id']= $certificateArray['id'];
+							}else{
+								$data[$key]['notified_body_certificate_id']=0;
+							}
+						}else{
+						 $data[$key]['notified_body_certificate_id']= '';
+						}
+						break;
+                                                case 'U':
+						if($cell->getValue() !=''){
+							$notifyBodyStr	=	trim($cell->getValue());
+							$condFilterArry  =  array('type' => 'Notified Body(Article 11B)', 'name'=> $notifyBodyStr, 'status'=>1 );
+							$certificateArray  = $this->Subassets_model->get_manage_cert_filt_chk_result($condFilterArry);
+							if($certificateArray){
+								$data[$key]['article_11b_certificate_id']= $certificateArray['id'];
+							}else{
+								$data[$key]['article_11b_certificate_id']= '';
+							}	
+						}else{
+                                                    $data[$key]['article_11b_certificate_id']= 0;
+						}
+						break;
+                                                case 'v':
+							$data[$key]['status'] = strtolower(trim($cell->getValue()));
+						break;                                             
+                                               
 					/*case 'O':
 						if($cell->getValue() !=''){
 							$stantardsStr	=	trim($cell->getValue());
@@ -1091,7 +1144,7 @@ class Manage_kare extends CI_Controller{
 					   
 					}// end of switch
 					$data[$key]['component_created_date'] = date('Y-m-d H:i:s',now());
-					$data[$key]['status'] = 'Active';
+					#$data[$key]['status'] = 'Active';
 				}// end celliterator
 			}
 	    }// End row Iterator

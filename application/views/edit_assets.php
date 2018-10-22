@@ -397,8 +397,8 @@
                                         <div class="form-group">
                                                        <label for="permain" class="col-md-3 control-label">Frequency of Periodic Maintenance (in Days)</label>
                                                        <div class="col-md-8">
-                                                           <input type="number" class="form-control" id="permain" name="permain" 
-                                                           value="<?php echo $component['component_pm_freq']; ?>" />
+                                                           <input type="number" class="form-control" id="pdm_frequency" name="pdm_frequency" 
+                                                           value="<?php echo $component['component_pdm_frequency']; ?>" />
                                                        </div>
                                         </div>    
                                     
