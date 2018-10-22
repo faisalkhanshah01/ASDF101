@@ -23,6 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //$config['base_url'] = 'http://localhost/arresto';
 
 $config['base_url'] = 'http://localhost/arresto2018/';
+
 $config['knowledgetree_url'] = 'http://arresto.in/knowledgetree';
 /*
 |--------------------------------------------------------------------------
