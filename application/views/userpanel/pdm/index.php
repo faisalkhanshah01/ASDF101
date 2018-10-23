@@ -160,10 +160,6 @@
 
 <?php $this->load->view('includes/scripts'); ?>
     <script type="text/javascript">
-
-
-
-
     var secCount=0;
     // $(document).on('click','#btn_addstep',function(){
     //    var p = new Promise(function(resolve,reject){
@@ -206,14 +202,12 @@
     }
     //new code ends
 
-
     function updateSectionLabel(){
         $('.sections .section').each(function(index,ele){
                $(this).attr("id","panel-"+(index+1));
                $(this).find('.panel-heading .step-label').html("Step No : "+(index+1));
                $(this).find('.collapseicon').attr("id","close-"+(index+1));
                $(this).find('.cloneicon').attr("id","clone-"+(index+1));
-
            });
     }
 
@@ -221,8 +215,6 @@
            $(this).parents('.section').remove();
             updateSectionLabel();
     });
-
-
 
     function collapsebox(a){
 
@@ -239,7 +231,6 @@
 
     }
 
-
     jQuery(function($) {
     var panelList = $('#draggablePanelList');
 
@@ -248,6 +239,7 @@
         // Omit this to make then entire <li>...</li> draggable.
         handle: '.panel-heading',
         update: function() {
+            debugger;
             $('.panel', panelList).each(function(index, elem) {
                  var $listItem = $(elem),
                      newIndex = $listItem.index();
@@ -255,6 +247,7 @@
                      $(this).find('.panel-heading .step-label').html("Step No : "+(index+1));
                      $(this).find('.collapseicon').attr("id","close-"+(index+1));
                      $(this).find('.cloneicon').attr("id","clone-"+(index+1));
+
                  // Persist the new indices.
             });
         }
