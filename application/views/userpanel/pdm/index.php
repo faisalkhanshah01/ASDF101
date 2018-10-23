@@ -75,6 +75,7 @@
                                     <div class="panel-heading">
                                       <span class="step-label">Step No.1</span>
                                       <div class="pull-right">
+                                          <i id="close-1"  class="glyphicon glyphicon-trash"></i>&nbsp;    
                                       <i id="clone-1" onclick="clonebox(this)" class="mr10 cloneicon glyphicon glyphicon-duplicate"></i>
                                       <i id="close-1" onclick="collapsebox(this)" class="collapseicon pull-right glyphicon glyphicon-chevron-up"></i>
                                       </div>
@@ -211,7 +212,7 @@
            });
     }
 
-    $(document).on('click','.home-heading .glyphicon-trash',function(){
+    $(document).on('click','.panel-heading .glyphicon-trash',function(){
            $(this).parents('.section').remove();
             updateSectionLabel();
     });
