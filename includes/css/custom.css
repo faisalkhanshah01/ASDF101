@@ -636,3 +636,6 @@ h4 {
   .red-text{
   	color: #da273f !important;
   }
+  #draggablePanelList .panel-heading {
+      cursor: move;
+  }
