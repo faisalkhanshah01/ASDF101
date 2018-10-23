@@ -51,7 +51,7 @@
 												echo "<option ".$selected." value='".$type['id']."'>".$type['type_name']."</option>";
 											}
 										}else{
-											echo '<option value="0">New Type</option>';
+											#echo '<option value="0">New Type</option>';
 										}
 										?>
 									</select>

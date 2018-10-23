@@ -230,8 +230,10 @@ class Subassets_model extends CI_Model{
 	}
 	
 	function  get_observation_type_list($field=NULL){
-		
-		$this->db->select('*');		
+            
+		$client_id=$_SESSION['client']['client_id'];
+		$this->db->select('*');
+                $this->db->where('type_client_fk',$client_id);
 		$this->db->where('type_category',17);
 		$result=$this->db->get('type_category');
 		if($result->num_rows()>0){
@@ -369,11 +371,9 @@ class Subassets_model extends CI_Model{
 		}*/
 		
 		$this->db->select('id,type_name,type_category');
-			$this->db->where('type_category',$id);
-                        
-                        #$this->db->where('type_client_fk',$client_id);
-                        #$this->db->or_where('type_client_fk',0);
-                        
+			$this->db->where('type_category',$id);  
+                        $this->db->where('type_client_fk',$client_id);
+                        #$this->db->or_where('type_client_fk',0); 
 			$this->db->where('status',1);
 			$result=$this->db->get('type_category');
                         #echo $this->db->last_query();
@@ -486,8 +486,11 @@ class Subassets_model extends CI_Model{
 
 
 	function  get_manage_cert_filt_result_list($fildArry){
-		
+            
+		$client_id=$_SESSION['client']['client_id'];
+                
 		$this->db->select('*');
+                $this->db->where('client_id',$client_id);
 		if(!empty($fildArry['type'])){
 		 $this->db->where('type',$fildArry['type']);
 		}

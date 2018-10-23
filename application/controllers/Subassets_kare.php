@@ -723,14 +723,16 @@ class Subassets_kare extends CI_Controller{
                                     
 				   switch($cell->getColumn()){
 					case 'B':
-					  echo   $type_category =strtolower(trim($cell->getValue()));
-                                            
+					    $type_category =strtolower(trim($cell->getValue()));
                                             if($type_category =='observations'){
                                                 $data[$key]['type_category']=17;
-                                            }elseif($type_category == 'expected result'){
+                                            }else if($type_category == 'expected result'){
                                                 $data[$key]['type_category']=3; 
+                                            }else if($type_category == 'inspection type'){
+                                                   $data[$key]['type_category']=2; 
                                             }else{
-                                                //echo "excel is in wrong format"; 
+                                                echo "excel is in wrong format"; 
+                                                die;
                                                 break; 
                                            }   	
 					break;
@@ -746,6 +748,8 @@ class Subassets_kare extends CI_Controller{
 			}
                 }	/* End row Iterator	*/
             
+
+                              
 		/* insert data into database */
 		#echo "<pre>"; print_r($data); echo "</pre>";  exit;
                 $this->load->model('build_model');

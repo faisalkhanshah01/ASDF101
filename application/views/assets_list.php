@@ -334,10 +334,10 @@
 									</div>
 							</div>
                                                          <div class="form-group">
-									<label for="permain" class="col-md-2 control-label">Frequency of Periodic Maintenance (in Days)</label>
+									<label for="pdm_frequency" class="col-md-2 control-label">Frequency of Periodic Maintenance (in Days)</label>
 									<div class="col-md-10">
-                                                                            <input type="number" class="form-control" id="permain" name="permain" 
-                                                                            value="<?php echo set_value('permain');?>" />
+                                                                            <input type="number" class="form-control" id="pdm_frequency" name="pdm_frequency" 
+                                                                            value="<?php echo set_value('pdm_frequency');?>" />
 									</div>
 							 </div>                                                      
 							<div class="form-group">
