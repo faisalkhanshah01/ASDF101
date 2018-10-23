@@ -25,6 +25,12 @@
         }
     }
     
+    function insert_data_batch($table,$dbdata){
+	return $this->db->insert_batch($table,$dbdata);
+		//echo $this->db->last_query();
+    }
+    
+    
     function update_table($table,$data,$where){
         
         #print_r($where); //die;

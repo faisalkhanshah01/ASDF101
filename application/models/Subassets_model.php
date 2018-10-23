@@ -452,7 +452,8 @@ class Subassets_model extends CI_Model{
 	}
 	
 	function  get_manage_standard_result_list($field=NULL){
-		$result = $this->db->query("SELECT id, type,name, status FROM manage_certificate ");
+                $client_id=$_SESSION['client']['client_id'];
+		$result = $this->db->query("SELECT id, type,name, status FROM manage_certificate where client_id='{$client_id}'");
 		if($result->num_rows()>0){
 			return $result->result_array();
 		}else{
@@ -472,7 +473,9 @@ class Subassets_model extends CI_Model{
 
 
 	function delete_manage_stand_certificate_result($idArray){
+             $client_id=$_SESSION['client']['client_id'];
 		foreach($idArray as $id){
+                        $this->db->where('clinet_id',$client_id);
 			$this->db->where('id',$id);
 			$res = $this->db->delete('manage_certificate');
 		}

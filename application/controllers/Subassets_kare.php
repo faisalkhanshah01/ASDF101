@@ -657,6 +657,110 @@ class Subassets_kare extends CI_Controller{
 	}
 
 /*  Ravindra Changes 26-8-2016  END */
+        
+     public function import_assets_result_type(){
+            
+             $clinet_id=$_SESSION['client']['client_id'];
+		if(isset($_POST['import_result_type'])&& $_SERVER['REQUEST_METHOD']=='POST'){
+
+                       $dir=FCPATH."/uploads/".$client_id."/xls/";
+                       if(!file_exists($dir)){
+                           mkdir($dir,0777,true);
+                       }
+			$config['upload_path'] = $dir; 
+			$config['allowed_types'] = 'xls|xlsx|csv';
+			$config['max_width'] = '0';
+			$config['max_height'] = '0';	
+			$this->load->library('upload',$config);
+			
+			if(!$this->upload->do_upload('file_upload')){
+				 $error=$this->upload->display_errors();
+				 $this->session->set_flashdata('msg','<div class="alert alert-danger capital">'.$error.'</div>');
+			}else{
+				$upload_data=$this->upload->data();
+				// get uploaded file path 
+				$file_path=$upload_data['full_path'];
+				if($file_path){
+					$result=$this->import_result_type_xls($file_path);
+					if($result){
+					  $this->session->set_flashdata('msg','<div class="alert alert-success capital">FILE SUCCESSFULLY IMPORTED.</div>');
+					//  unlink($file_path); // delete the uploded file 	
+					 }else{
+					  echo "<div class='alert alert-danger capital>file uploading problem</div>";	 
+                                     }
+				}
+			}
+		}
+		redirect($this->client_url.'subassets_kare/inspection_result_list');
+	}   
+        
+        
+      function import_result_type_xls($file_path){
+          
+            #echo $file_path; die; 
+                // load library
+                $client_id=$_SESSION['client']['client_id'];
+		$this->load->library('excel');
+		$objPHPExcel=PHPExcel_IOFactory::load($file_path);
+		// get worksheet
+		$objWorksheet = $objPHPExcel->getActiveSheet();
+		$data=array();
+		//get only row iterator
+		$this->load->model('Subassets_model');
+		$count = 0;
+                $this->load->model('SiteId_model');
+                
+		foreach($objWorksheet->getRowIterator() as $key=>$row){
+			
+			if($key==1) continue;
+                        
+			if($this->SiteId_model->isRowNotEmpty($row)) {
+				$cellIterator=$row->getCellIterator();
+                                $cellIterator->setIterateOnlyExistingCells(false); // accepts blank column also 
+                                
+                                $data[$key]['type_client_fk']=$client_id;
+				foreach($cellIterator as $cell){
+                                    
+				   switch($cell->getColumn()){
+					case 'B':
+					  echo   $type_category =strtolower(trim($cell->getValue()));
+                                            
+                                            if($type_category =='observations'){
+                                                $data[$key]['type_category']=17;
+                                            }elseif($type_category == 'expected result'){
+                                                $data[$key]['type_category']=3; 
+                                            }else{
+                                                //echo "excel is in wrong format"; 
+                                                break; 
+                                           }   	
+					break;
+					case 'C':
+                                               $data[$key]['type_name']=trim($cell->getValue());
+					break;
+					
+					} /* end of switch */
+                                         
+					$data[$key]['created_date'] = time();
+					
+				} /* end cell iterator */
+			}
+                }	/* End row Iterator	*/
+            
+		/* insert data into database */
+		#echo "<pre>"; print_r($data); echo "</pre>";  exit;
+                $this->load->model('build_model');
+                $this->build_model->insert_data_batch('type_category',$data);
+		#$result=$this->kare_model->import_products_list($data);	
+		if($result){
+			$this->session->set_flashdata('msg',"<div class='alert alert-success capital'>ASSET SERIES LIST XLS/CSV FILE SUCCESSFULLY IMPORTED</div>");
+			return true;
+		}else{
+			return false;
+	        }
+          
+          
+      }  
+        
 	
 	
 	public function insert_inspection_result(){
@@ -758,7 +862,7 @@ class Subassets_kare extends CI_Controller{
 				}
 		}else{
 			// update record	
-		    $sub_assets=$this->Subassets_model->get_standard_result($id);
+                        $sub_assets=$this->Subassets_model->get_standard_result($id);
 			if(is_array($sub_assets)){ 
 				if(isset($_POST['edit_manage_certificate_result'])){  
 					if($this->edit_manage_certificate_result($id)){
@@ -770,20 +874,24 @@ class Subassets_kare extends CI_Controller{
 					$this->load->view('kare/manage_stand_certificate',$data);  
 				}
 			}else{
-			show_404();	
+                            
+                            show_404();	
 			}
 	    }  
 	}
 
 	public function insert_manage_stand_certificate_result(){
+            
+                $client_id=$_SESSION['client']['client_id'];
 		
 		if(isset($_POST['save_manage_certificate_result'])){
 
 		$dbdata['type']			=		trim($this->input->post('type'));
 		$dbdata['name']			=		$this->input->post('name');
 		$dbdata['status']		=		$this->input->post('status');
-		$dbdata['user_email']	=		$this->session->flexi_auth['user_identifier'];
-		$dbdata['created_date']	=		date("Y-m-d H:i:s");
+		$dbdata['user_email']           =		$this->session->flexi_auth['user_identifier'];
+		$dbdata['created_date']         =		date("Y-m-d H:i:s");
+                $dbdata['client_id']		=               $client_id; 
 
 		$this->form_validation->set_rules('name','Name','required');
 		$this->form_validation->set_rules('type','Type','required');

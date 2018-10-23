@@ -29,6 +29,9 @@
 						<span><?php echo $title; ?></span>
 					</div>
 					<div class="panel-body">
+                                            
+                                            <div class="row">
+                                                <div class="col-md-8"> 
 						<?php echo form_open_multipart(current_url() , 'class="form-horizontal" id="inspection_resultForm"'); ?>
 							<div class="form-group">
 								<label for="email" class="col-md-2 control-label"><?php if( $lang["add_type_name"]['description'] !='' ){ echo $lang["add_type_name"]['description']; }else{ echo "Add Type Name"; }  ?></label>
@@ -80,7 +83,30 @@
 								</div>
 							</div>
 						<!--</form>-->
-						<?php echo form_close();?>
+						<?php echo form_close();?> 
+                                                </div>
+                                                <div class="col-md-4">
+							<?php echo form_open_multipart($base_url.'subassets_kare/import_assets_result_type', 'class="form-horizontal"'); ?>
+							<legend class="home-heading">IMPORT Observations/ Expected Result FROM XLS/CSV"</legend>
+								<div class="form-group">
+								<label for="email" class="col-md-4 control-label"><?php if( $lang["upload_xls_file"]['description'] !='' ){ echo $lang["upload_xls_file"]['description']; }else{ echo "Upload Xls FIle"; } ?></label>
+								<div class="col-md-8">
+									<input type="file" id="file_upload" name="file_upload" class="form-control tooltip_trigger" /> <br/>Supported Only : (.xls /.xlsx /.csv)
+									<?php echo form_error('file_upload'); ?>    
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-offset-4 col-md-8">
+									<input type="submit" name="import_result_type" class="btn btn-primary" id="import_result_type" value="Uplaod XLS" />
+								</div>
+							</div>
+							<?php echo form_close();?>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                            
+                                            
 					</div>
 				</div>
 			</div>
