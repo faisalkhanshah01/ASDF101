@@ -41,7 +41,7 @@
                                 echo 'INSERT PERIODIC MAINTENANCE';
                             }
                             ?>
-                        <a class="btn btn-info" id="btn_addstep" href="javascript:void(0);" /><i class="glyphicon glyphicon-plus"></i></a>
+                        <!-- <a class="btn btn-info" id="btn_addstep" href="javascript:void(0);" /><i class="glyphicon glyphicon-plus"></i></a> -->
                         </legend>
                            <div class="form-group col-md-4">
                             <label for="assets" class="control-label"><?php
@@ -74,7 +74,10 @@
                                 <li class="panel panel-info section" id="panel-1">
                                     <div class="panel-heading">
                                       <span class="step-label">Step No.1</span>
-                                      <i id="close-1" onclick="collapsebox(this)" class="green-text pull-right glyphicon glyphicon-plus"></i>
+                                      <div class="pull-right">
+                                      <i id="clone-1" onclick="clonebox(this)" class="mr10 cloneicon glyphicon glyphicon-duplicate"></i>
+                                      <i id="close-1" onclick="collapsebox(this)" class="collapseicon pull-right glyphicon glyphicon-chevron-up"></i>
+                                      </div>
                                     </div>
                                     <div class="panel-body" style="display:none;">
                                       <div class="col-md-6">
@@ -157,47 +160,60 @@
 
 <?php $this->load->view('includes/scripts'); ?>
     <script type="text/javascript">
+
+
+
+
     var secCount=0;
-    $(document).on('click','#btn_addstep',function(){
+    // $(document).on('click','#btn_addstep',function(){
+    //    var p = new Promise(function(resolve,reject){
+    //         secCount++;
+    //         var template= $('.section:first').clone();
+    //           var section= template.clone().find(":input").each(function(index,ele){
+    //                     var newid=$(this).attr('id')+secCount;
+    //                     $(this).prev('label').attr('for',newid);
+    //                     this.id=newid;
+    //            }).end();
+    //           $('<i class="red-text pull-right glyphicon glyphicon-trash" style="margin: 0px 5px;"></i>').insertAfter(section.find('.home-heading .step-label'));
+    //             section.appendTo('.sections');
+    //           resolve();
+    //     });
+    //
+    //     p.then(function(){
+    //             updateSectionLabel();
+    //     });
+    //
+    // });
+    //new code start
+    function clonebox(b){
+              let cloneid = (parseInt($(b).attr('id').split('-')[1])-1);
+              var p = new Promise(function(resolve,reject){
+              secCount++;
+              var template= $('.section:eq('+cloneid+')').clone();
+                var section= template.clone().find(":input").each(function(index,ele){
+                          var newid=$(this).attr('id')+secCount;
+                          $(this).prev('label').attr('for',newid);
+                          this.id=newid;
+                 }).end();
+                $('<i class="red-text pull-right glyphicon glyphicon-trash" style="margin: 0px 5px;"></i>').insertAfter(section.find('.home-heading .step-label'));
+                  section.appendTo('.sections');
+                resolve();
+          });
 
-       debugger;
+          p.then(function(){
+                  updateSectionLabel();
+          });
+    }
+    //new code ends
 
-       var p = new Promise(function(resolve,reject){
-            secCount++;
-            var template= $('.section:first').clone();
-              var section= template.clone().find(":input").each(function(index,ele){
-                        var newid=$(this).attr('id')+secCount;
-                        $(this).prev('label').attr('for',newid);
-                        this.id=newid;
-               }).end();
-              $('<i class="red-text pull-right glyphicon glyphicon-trash" style="margin: 0px 5px;"></i>').insertAfter(section.find('.home-heading .step-label'));
-                section.appendTo('.sections');
-              resolve();
-        });
-
-        p.then(function(){
-                updateSectionLabel();
-        });
-
-
-        /*secCount++;
-        var template= $('.section:first').clone();
-          var section= template.clone().find(":input").each(function(index,ele){
-                    var newid=$(this).attr('id')+secCount;
-                    $(this).prev('label').attr('for',newid);
-                    this.id=newid;
-           }).end();
-          $('<i  onclick="delSection()" class="red-text pull-right glyphicon glyphicon-trash" style="margin: 0px 5px;"></i>').insertAfter(section.find('.home-heading .step-label'));
-          // var stepadd = section.html().replace('Step No.1','Step No.'+(secCount+1)).replace('panel-1','panel-'+(secCount+1)).replace('close-1','close-'+(secCount+1));
-          // section = $('<div class="row section">'+stepadd+'</div>');
-          section.appendTo('.sections');
-         */
-
-    });
 
     function updateSectionLabel(){
         $('.sections .section').each(function(index,ele){
-               $(this).find('.home-heading .step-label').html("Step No : "+(index+1));
+               $(this).attr("id","panel-"+(index+1));
+               $(this).find('.panel-heading .step-label').html("Step No : "+(index+1));
+               $(this).find('.collapseicon').attr("id","close-"+(index+1));
+               $(this).find('.cloneicon').attr("id","clone-"+(index+1));
+
            });
     }
 
@@ -209,15 +225,16 @@
 
 
     function collapsebox(a){
+
       let id = $(a).attr('id').split('-')[1];
       let panelbody = $("#panel-"+id).find('.panel-body');
       if(panelbody.css('display')=='none'){
             panelbody.css('display','block');
-            $("#close-"+id).attr('class','red-text pull-right glyphicon glyphicon-minus');
+            $("#close-"+id).attr('class','collapseicon pull-right glyphicon glyphicon-chevron-down');
       }
       else{
         panelbody.css('display','none');
-        $("#close-"+id).attr('class','green-text pull-right glyphicon glyphicon-plus');
+        $("#close-"+id).attr('class','collapseicon pull-right glyphicon glyphicon-chevron-up');
       }
 
     }
@@ -234,7 +251,10 @@
             $('.panel', panelList).each(function(index, elem) {
                  var $listItem = $(elem),
                      newIndex = $listItem.index();
-
+                     $(this).attr("id","panel-"+(index+1));
+                     $(this).find('.panel-heading .step-label').html("Step No : "+(index+1));
+                     $(this).find('.collapseicon').attr("id","close-"+(index+1));
+                     $(this).find('.cloneicon').attr("id","clone-"+(index+1));
                  // Persist the new indices.
             });
         }
