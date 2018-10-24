@@ -1857,7 +1857,7 @@ class Api_controller extends REST_Controller
 	function mdata_get(){   // mdata_asset        mdata_item_series
 		$mdata_id 		= (isset($_REQUEST['mdata_id']))? $_REQUEST['mdata_id'] : '';
 		$userID 		= $_REQUEST['userID'];
-		$userGroupID 	= $_REQUEST['userGroupID'];
+		$userGroupID            = $_REQUEST['userGroupID'];
 		
 		$this->load->model('kare_model');
 		if($mdata_id==''){
@@ -1867,7 +1867,7 @@ class Api_controller extends REST_Controller
 		}
 		$mdata_item_seriesFlag	= 0;
 		$mdata_assetFlag		= 0;
-                echo "<pre>";
+                #echo "<pre>";
 		#print_r($mdata);die();
                  
                  
@@ -1886,7 +1886,7 @@ class Api_controller extends REST_Controller
 					$mdata[$key]['mdata_dealer'] = (($dealer['client_name'] == null) || ($dealer['client_name'] == NULL))?'':$dealer['client_name'];
 				}
                               
-                            print_r($mdata);die();    
+                           print_r($mdata);die();    
                                 
 			/* Images */
 				$asset_image = '0'; $item_arrays ='0';
@@ -1939,7 +1939,7 @@ class Api_controller extends REST_Controller
 							$assetCodeData = $assetCodeData.'####'.$valueAssetCodes['component_array'];
 						}
 						$assetCodes['product_geo_fancing'] = $valueAssetCodes['product_geo_fancing'];
-					    $assetCodes['product_work_permit'] = $valueAssetCodes['product_work_permit'];
+                                                $assetCodes['product_work_permit'] = $valueAssetCodes['product_work_permit'];
 						$countAssetCodes++;
 					} 
 					
@@ -1955,7 +1955,7 @@ class Api_controller extends REST_Controller
 				$mdata[$key]['product_geo_fancing'] = ($assetCodes['product_geo_fancing'] == null)?'':$assetCodes['product_geo_fancing'];
 				$mdata[$key]['product_work_permit'] = ($assetCodes['product_work_permit'] == null)?'':$assetCodes['product_work_permit'];
 
-                //  Start to three dates 
+                                //  Start to three dates 
 				
 				if( !empty($val['mdata_asset'] )){  
 				   $mdata_assetArray			= !empty($val['mdata_asset'])?json_decode($val['mdata_asset'], true): NULL;
