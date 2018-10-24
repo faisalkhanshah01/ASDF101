@@ -181,13 +181,6 @@ class Demo_auth_model extends CI_Model {
 				// Save any public status or error messages (Whilst suppressing any admin messages) to CI's flash session data.
 				$this->session->set_flashdata('msg', $this->flexi_auth->get_messages());
                                 redirect($this->client_url.'auth'); 
-                                
-				// Redirect user to login page
-				/*if(isset($_SESSION['user_from']) && $_SESSION['user_from']=='infonet'){
-					redirect('Infonet');
-				}else{
-					redirect($this->client_url.'auth');
-				}*/
 			}
 		}
                      
@@ -272,7 +265,7 @@ class Demo_auth_model extends CI_Model {
 			if(isset($_SESSION['user_from']) && $_SESSION['user_from']=='infonet'){
 				redirect('Infonet');
 			}else{
-				redirect('auth');
+				redirect($this->client_url.'auth');
 			}
 		}
 		else
@@ -316,7 +309,7 @@ class Demo_auth_model extends CI_Model {
 			// Save any public status or error messages (Whilst suppressing any admin messages) to CI's flash session data.
 			$this->session->set_flashdata('msg', $this->flexi_auth->get_messages());
 			
-			redirect('Infonet');
+			redirect($this->client_url.'auth');
 		}
 		else
 		{		
@@ -549,6 +542,7 @@ class Demo_auth_model extends CI_Model {
 		$image_name = time();
 		$file_name = $image_name.".".pathinfo($_FILES["user_image"]["name"], PATHINFO_EXTENSION);
                 $client_id=$_SESSION['client']['client_id'];
+                #$new_path = "./uploads/images/users/";
 		$new_path = $this->_img_path;
 		$this->check_directory($new_path);
 		$new_loc = $new_path.$file_name;		
@@ -556,7 +550,7 @@ class Demo_auth_model extends CI_Model {
 			
 			$this->image_resize($file_name);
 			$newImageName = $image_name.'_thumb'.".".pathinfo($_FILES["user_image"]["name"], PATHINFO_EXTENSION);
-			$old_pic = $this->_img_path.$file_name;
+			$old_pic = $new_path.$file_name;
 			$this->delete_old_pic($old_pic);
 			return $userImageName	=	$newImageName;
 		}

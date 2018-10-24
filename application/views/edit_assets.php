@@ -23,7 +23,7 @@
 					}else{
 						var value = query;
 					}
-					$.get( "http://arresto.in/kare/manage_kare/ajax_get_expected_result",
+					$.get( base_url+"kare/manage_kare/ajax_get_expected_result",
 						{ 'search' : value },
 						function(data){
 						$(".search-expectedResult").html(data);	 
@@ -74,7 +74,7 @@
 					}else{
 						var value = query;
 					}
-					$.get( "http://arresto.in/kare/manage_kare/ajax_get_observations",
+					$.get( base_url+"kare/manage_kare/ajax_get_observations",
 						{ 'search' : value },
 						function(data){
 						$(".search-observation").html(data);	 
@@ -250,7 +250,9 @@
 						<div class="row">
 							<div class="col-md-5">
 								<div class="component-container search-expectedResult" id='sel_expectedResult'>
-									<?php foreach($result as $resultKey=>$resultValue){ 
+									<?php 
+                                                                        #print_r($result); 
+                                                                        foreach($result as $resultKey=>$resultValue){ 
 									?>
 									<p><?php echo $resultValue; ?>
 									<input class="pull-right" type="checkbox" name="expectedResult[]" id="<?php echo "chk_".$resultKey; ?>" value="<?php echo $resultKey; ?>" rel="<?php echo $resultValue; ?>" /></p>
@@ -264,18 +266,19 @@
 								<div class="component-container" id="selected_expectedResult">
 									<?php if(!empty($component['component_expectedresult'])){
 											$excpected_result = json_decode($component['component_expectedresult'],true);
+                                                                                        #print_r($excpected_result); 
+                                                                                        #die;
 											foreach($excpected_result as $comp){
-												if(array_key_exists($comp,$result)){ ?>
-												
-													<p id='<?php echo $comp; ?>' class='bg-success'><?php echo $result[$comp]; ?><span rel="<?php echo $comp; ?>" class="pull-right text-danger  glyphicon glyphicon-trash"></span>
-														<input type="hidden" class="sel-component subresult" name="expectedResult[]" value="<?php echo $comp; ?>"/>
-													</p>
-										<?php	
+												if(array_key_exists($comp,$result)){?>
+													 <p id='<?php echo $comp; ?>' class='bg-success'><?php echo $result[$comp]; ?><span rel="<?php echo $comp; ?>" class="pull-right text-danger  glyphicon glyphicon-trash"></span>
+                                                                                                            <input type="hidden" class="sel-component subresult" name="expectedResult[]" value="<?php echo $comp; ?>"/>
+													 </p>
+										        <?php	
 												}else{ ?>
-													<p id='<?php echo $comp; ?>' class='bg-success'><?php echo $result[$comp]; ?><span rel="<?php echo $comp; ?>" class="pull-right text-danger  glyphicon glyphicon-trash"></span>
-														<input type="hidden" class="sel-component" name="expectedResult[]" value="<?php echo $comp; ?>"/>
+													<p id='<?php echo $comp; ?>' class='bg-danger'><?php echo $comp; ?><span rel="<?php echo $comp; ?>" class="pull-right text-danger  glyphicon glyphicon-trash"></span>
+													  <input type="hidden" class="sel-component" name="expectedResult[]" value="<?php echo $comp; ?>"/>
 													</p>
-										<?php	}
+										<?php       }
 											}
 										}
 									?>

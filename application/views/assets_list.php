@@ -224,6 +224,7 @@
 										<div class="col-md-6">
 											<div class="component-container search-expectedResult form-control" id='sel_expectedResult' style="height: 150px;border: 1px solid #CCC;">
 												<?php 
+                                                                                                #print_r($result); die;
 												if(!empty($result)){
 												foreach($result as $resultKey=>$resultValue){ 
 												?>

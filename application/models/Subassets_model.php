@@ -300,6 +300,9 @@ class Subassets_model extends CI_Model{
 	}
 	
 	function get_inspection_list($type='',$inspectiontype=''){
+            
+                $client_id=$_SESSION['client']['client_id'];
+                $this->db->where('type_client_fk',$client_id);
 		
 		if($type=='inspection'){
 			$id = 2;

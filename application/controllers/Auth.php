@@ -9,8 +9,8 @@ class Auth extends CI_Controller {
     {
         parent::__construct();
 
-      ini_set('display_errors',1);
-      error_reporting(E_ALL);
+      #ini_set('display_errors',1);
+      #error_reporting(E_ALL);
 
 		// To load the CI benchmark and memory usage profiler - set 1==1.
 		if (1==1)		 
@@ -102,7 +102,6 @@ class Auth extends CI_Controller {
        
     function index()
     {
-
         #echo "client _index fnction ";
          if($this->verify_client_slug()){
                 $this->login();

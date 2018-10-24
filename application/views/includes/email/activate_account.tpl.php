@@ -11,7 +11,7 @@
 <body>
     
         <div id="main" style="background-color:#f3f3f3;">
-             <p><img src="<?php echo base_url($_SESSION['client']['logo']); ?>" width="60px;" alt="<?php echo $_SESSION['client']['name']; ?>" title="<?php echo $_SESSION['client']['name']; ?>" /></p>
+             <p><img src="<?php echo base_url($_SESSION['client']['logo']); ?>" width="60px;" alt="<?php echo $_SESSION['client']['client_name']; ?>" title="<?php echo $_SESSION['client']['client_name']; ?>" /></p>
 		<div>
 			Dear <?php echo $identity;?>,
 		</div>
@@ -21,13 +21,13 @@
 
                         <div id="btn">
                           <p>
-                              <?php echo anchor('auth/activate_account/'. $user_id .'/'. $activation_token, '<button type="button" style="color: #ffffff; background-color:'.$_SESSION['client']['color_code'].';border:2px solid #F2E6DF" >Activate Your Account</button>') ;?></p>
+                              <?php echo anchor($base_url.'auth/activate_account/'. $user_id .'/'. $activation_token, '<button type="button" style="color: #ffffff; background-color:'.$_SESSION['client']['color_code'].';border:2px solid #F2E6DF" >Activate Your Account</button>') ;?></p>
                         </div>
                         
                         <p>If you didn't ask for this email, you can safely ignore it.</p>
                         <div if="footer">
                                 <p>Best Regards,</p>
-                                </p><?php echo $_SESSION['client']['name']; ?> Team</p>
+                                </p><?php echo $_SESSION['client']['clinet_name']; ?> Team</p>
                         </div>     
                         
 		</div>

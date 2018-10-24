@@ -75,7 +75,7 @@
                                     <div class="panel-heading">
                                       <span class="step-label">Step No.1</span>
                                       <div class="pull-right">
-                                          <i id="close-1"  class="glyphicon glyphicon-trash"></i>&nbsp;    
+                                      <i class="glyphicon glyphicon-trash"></i>&nbsp;    
                                       <i id="clone-1" onclick="clonebox(this)" class="mr10 cloneicon glyphicon glyphicon-duplicate"></i>
                                       <i id="close-1" onclick="collapsebox(this)" class="collapseicon pull-right glyphicon glyphicon-chevron-up"></i>
                                       </div>
@@ -108,23 +108,23 @@
                                                           <option value="<?php echo $key;  ?>"><?php echo $val;  ?></option>
                                                   <?php } ?>
                                               </select>
-
                                           </div>
 
                                       </div>
                                       <div class="col-md-6">
-                                          <div class="form-group col-md-12">
-                                              <label for="group" class="control-label">Upload Document</label>
-                                              <input type="file" class="form-control" name="pdm_document[]" id="pdm_document"  />
+                                            <div class="form-group col-md-12">
+                                              <label for="group" class="control-label">Upload Image(*multiple - jpg/png/jpeg)</label>
+                                              <input type="file" id="group" class="form-control" name="pdm_image[]" id="pdm_image" multiple="1"/>
                                           </div>
                                           <div class="form-group col-md-12">
-                                              <label for="group" class="control-label">Upload Media</label>
-                                              <input type="file" id="pdm_media" class="form-control" name="pdm_media[]" id="pdm_media" />
+                                              <label for="group" class="control-label">Upload Document (*multiple - pdg/doc/ppt)</label>
+                                              <input type="file" class="form-control" name="pdm_document[]" id="pdm_document"  multiple="" />
                                           </div>
                                           <div class="form-group col-md-12">
-                                              <label for="group" class="control-label">Upload Image</label>
-                                              <input type="file" id="group" class="form-control" name="pdm_image[]" id="pdm_image"/>
+                                              <label for="group" class="control-label">Upload Media (Video Url )</label>
+                                              <input type="text" id="pdm_media" class="form-control" name="pdm_media[]" id="pdm_media" />
                                           </div>
+                                        
 
                                       </div>
                                     </div>
@@ -134,16 +134,11 @@
                       </div>
                      </div>
                         <!-- /.section -->
-
                     </div>
                     <!-- /.sections -->
-
-
-
-
-
+                    
                     <div class="form-group" >
-                        <div class="col-md-offset-4 col-md-8" style="margin-top:30px;">
+                         <div class="col-md-offset-4 col-md-8" style="margin-top:30px;">
                             <input type="hidden" name="master_id"  id="master_id" value="" />
                             <input type="submit" name="submit_siteID" class="btn btn-primary" id="submit_mdata" value="SAVE PERIODIC MAINTENANCE DATA" />
                         </div>

@@ -110,10 +110,12 @@
 								</tr>
 							</thead>
 							
-							<?php if (!empty($subAssetData) && is_array($subAssetData)) { ?>
-							<tbody>
+							<?php if (!empty($subAssetData) && is_array($subAssetData)) {
+                                                            ?>
+							 <tbody>
 								<?php $i =1;
-                                    foreach ($subAssetData as $key => $value) { ?>
+                                                                foreach ($subAssetData as $key => $value) { 
+                                                                ?>
 								<tr>
 									<td style="width: 52px;">
 										<a class="text-primary" href="<?php print base_url().'Subassets_kare/sub_assets_list/'.$value['sub_assets_id']?>"> <span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;

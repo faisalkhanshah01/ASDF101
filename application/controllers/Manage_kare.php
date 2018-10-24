@@ -950,9 +950,9 @@ class Manage_kare extends CI_Controller{
 						case 'G':
 							if($cell->getValue() !=''){
 								$resulttype	=	$cell->getValue();
-								if(strpos($resulttype, ',') != false){
-									$sub_assets = explode(',',$cell->getValue());
-									
+								if(strpos($resulttype, ',') != false || strpos($resulttype,'/') != false){
+									#$sub_assets = explode(',',$cell->getValue());
+									$sub_assets = preg_split( "/(##|,)/", $cell->getValue());
 									$keyID = array();
 									foreach($sub_assets as $subKey=>$subValue){
 										$sub_value = ucwords(strtolower(trim($subValue)));
@@ -983,8 +983,9 @@ class Manage_kare extends CI_Controller{
 							$observations=$cell->getValue();
 							if($observations !=''){
 								/* check if it has multiple values or single value */
-								if(strpos($observations, ',') != false){
-									$observation_array = explode(',',$cell->getValue());
+								if(strpos($observations, ',') != false || strpos($resulttype,'/') != false){
+									#$observation_array = explode(',',$cell->getValue());
+									$observation_array = preg_split( "/(##|,)/", $cell->getValue());;
 									$objkeyID = array();
 									foreach($observation_array as $subKey=>$subValue){
 										$result=$this->Subassets_model->get_inspection_list('observations',ucwords(strtolower(trim($subValue))));

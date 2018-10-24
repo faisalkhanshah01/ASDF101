@@ -17,7 +17,8 @@ class Send_mail {
     	$params['content'] = $content;
         $params['subject'] = $subject;
         $params['from_name'] = 'KARE by Karam';
-    	$params['from_email'] = 'karam@karam.in';
+    	#$params['from_email'] = 'karam@karam.in';
+        $params['from_email'] = 'info@arresto.in';
 	//	print_r($params);print_r($contactList);die("123");
 		$send = $this->karanMail($params, $contactList);
     	return $send;

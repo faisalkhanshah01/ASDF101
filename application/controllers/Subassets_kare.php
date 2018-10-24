@@ -450,8 +450,8 @@ class Subassets_kare extends CI_Controller{
 								/* check if it has multiple values or single value */
 								if(strpos($resulttype, ',') != false){
 									$this->load->model('Subassets_model');
-									$sub_assets = explode(',',$cell->getValue());
-									
+									#$sub_assets = explode(',',$cell->getValue());
+                                                                        $sub_assets = preg_split( "/(\/|,)/", $cell->getValue());
 									$keyID = array();
 									foreach($sub_assets as $subKey=>$subValue){
 										$result=$this->Subassets_model->get_inspection_list('result',ucwords(strtolower(trim($subValue))));
@@ -484,7 +484,8 @@ class Subassets_kare extends CI_Controller{
 								/* check if it has multiple values or single value */
 								if(strpos($observations, ',') != false){
 									$this->load->model('Subassets_model');
-									$observation_array = explode(',',$cell->getValue());
+									#$observation_array = explode(',',$cell->getValue());
+									$observation_array = preg_split( "/(\/|,)/", $cell->getValue());
 									
 									$objkeyID = array();
 									foreach($observation_array as $subKey=>$subValue){
