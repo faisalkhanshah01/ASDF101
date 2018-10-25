@@ -128,7 +128,7 @@
                                               <input type="text" id="pdm_media" class="form-control" name="pdm_media[]" id="pdm_media" />
                                           </div>
                                           <!-- file upload feature starts-->
-                                          <div class="form-group col-md-12">
+                                          <!-- <div class="form-group col-md-12"> -->
                                             <div class="row fileupload-buttonbar">
                                                         <div class="col-lg-7">
                                                             <!-- The fileinput-button span is used to style the file input field as button -->
