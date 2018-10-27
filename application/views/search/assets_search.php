@@ -133,7 +133,7 @@
 											}else{
 												$imagePath = '<img src="http://placehold.it/60x60" width="60" height="60" />';
 											}
-											#print $imagePath;
+											print $imagePath;
 										?>
 									</td>
 									<td style="width: 39px;">
@@ -169,11 +169,15 @@
 											if(is_array($result) && !empty($value['component_expectedresult'])){
 												$excpected_result = json_decode($value['component_expectedresult'],true);
 												$result_value = '';
+                                                                                                /*echo "<pre>";
+                                                                                                print_r($excpected_result); die;*/ 
+                                                                                                
 												foreach($excpected_result as $expResult){
+                                                                                                    
 													if(array_key_exists($expResult,$result)){
-														$result_value .=  "<p>".$result[$expResult]."</p><hr>";
+                                                                                                                  $result_value .=  "<p>".$result[$expResult]."</p><hr>";
 													}else{
-														$result_value .= "<p class='bg-danger'><span class='glyphicon glyphicon-exclamation-sign'></span>".$value['component_expectedresult']."</p>";
+														$result_value .= "<p class='bg-danger'><span class='glyphicon glyphicon-exclamation-sign'></span>".$expResult."</p>";
 													}
 												}
 											}else{
@@ -192,7 +196,7 @@
 															if(array_key_exists($obsResult,$observations)){
 																$observation_value .=  "<p>".$observations[$obsResult]."</p><hr>";
 															}else{
-																$observation_value .= "<p class='bg-danger'><span class='glyphicon glyphicon-exclamation-sign'></span>".$value['component_observation']."</p>";
+																$observation_value .= "<p class='bg-danger'><span class='glyphicon glyphicon-exclamation-sign'></span>".$obsResult."</p>";
 															}
 														}
 												}else{

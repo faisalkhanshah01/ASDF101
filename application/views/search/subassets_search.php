@@ -170,7 +170,7 @@
 													if(array_key_exists($expResult,$result)){
 														$result_value .=  "<p>".$result[$expResult]."</p><hr>";
 													}else{
-														$result_value .= "<p class='bg-danger'><span class='glyphicon glyphicon-exclamation-sign'></span>".$value['sub_assets_result']."</p>";
+														$result_value .= "<p class='bg-danger'><span class='glyphicon glyphicon-exclamation-sign'></span>".$expResult."</p>";
 													}
 												}
 											}else{
@@ -188,8 +188,8 @@
 														foreach($observations_array as $obsResult){
 															if(array_key_exists($obsResult,$observations)){
 																$observation_value .=  '<p>'.$observations[$obsResult].'</p><hr>';
-															}else{
-																$observation_value .= "<p class='bg-danger'><span class='glyphicon glyphicon-exclamation-sign'></span>".$value['sub_assets_observation']."</p>";
+															  }else{
+															     $observation_value .= "<p class='bg-danger'><span class='glyphicon glyphicon-exclamation-sign'></span>".$obsResult."</p>";
 															}
 														}
 												}else{

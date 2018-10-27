@@ -369,14 +369,14 @@
 				</div>
                                     
                                         <div class="form-group">
-                                        <label for="frequency_month" class="col-md-3 control-label">Frequency of Product (in month)</label>
+                                        <label for="frequency_month" class="col-md-3 control-label">Frequency of Inspection (in month)</label>
                                         <div class="col-md-8">
                                         <input type="number" class="form-control" id="frequency_asset" name="frequency_asset" 
                                         value="<?php echo $component['component_frequency_asset'];?>" min="1" max="24" />
                                         </div>
                                         </div>
                                         <div class="form-group">
-                                                        <label for="frequency_hours" class="col-md-3 control-label">Frequency of Product (in hours)</label>
+                                                        <label for="frequency_hours" class="col-md-3 control-label">Frequency of Inspection (in hours)</label>
                                                         <div class="col-md-8">
                                                             <input type="number" class="form-control" id="frequency_hours" name="frequency_hours" 
                                                             value="<?php echo $component['component_frequency_hours'];?>" />

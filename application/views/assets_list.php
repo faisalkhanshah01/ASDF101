@@ -224,7 +224,6 @@
 										<div class="col-md-6">
 											<div class="component-container search-expectedResult form-control" id='sel_expectedResult' style="height: 150px;border: 1px solid #CCC;">
 												<?php 
-                                                                                                #print_r($result); die;
 												if(!empty($result)){
 												foreach($result as $resultKey=>$resultValue){ 
 												?>
@@ -306,17 +305,17 @@
 							</div>
                                                         
 							<div class="form-group">
-									<label for="frequency_month" class="col-md-2 control-label">Frequency of Product (in month)</label>
+									<label for="frequency_month" class="col-md-2 control-label">Frequency of Inspection (in month)</label>
 									<div class="col-md-10">
                                                                     <input type="number" class="form-control" id="frequency_asset" name="frequency_asset" 
                                                                     value="<?php echo set_value('frequency_asset');?>" min="1" max="24" />
 									</div>
 							</div>
                                                         <div class="form-group">
-									<label for="frequency_hours" class="col-md-2 control-label">Frequency of Product (in hours)</label>
+									<label for="frequency_hours" class="col-md-2 control-label">Frequency of Inspection (in hours)</label>
 									<div class="col-md-10">
                                                                             <input type="number" class="form-control" id="frequency_hours" name="frequency_hours" 
-                                                                            value="<?php echo set_value('frequency_hours');?>" />
+                                                                            value="<?php echo set_value('frequency_hours');?>"  />
 									</div>
 							</div>
                                                         

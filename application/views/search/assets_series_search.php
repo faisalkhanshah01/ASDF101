@@ -101,7 +101,7 @@
 									<th>Image</th>
 									<th>Asset List</th>
 									<th>Inspection Type</th>
-									<th>Infonet Status</th>
+									<th>Knowledge Tree Status</th>
 									<th>status</th>
 									<th>Date</th>
 								</tr>
@@ -121,7 +121,10 @@
 									<td >
 										<?php 
 											if($value['product_imagepath']!=''){
-												$imagePath = '<img src="'.$value['product_imagepath'].'" width="60" height="60" />';
+												$product_img=$value['product_imagepath'];
+												$product_img=str_replace("./",base_url(),$product_img);
+												
+												$imagePath = '<img src="'.$product_img.'" width="60" height="60" />';
 											}else{
 												$imagePath = '<img src="http://placehold.it/60x60" width="60" height="60" />';
 											}
@@ -135,9 +138,9 @@
 												$asset ='';
 												foreach($components as $code){
 													$tCode = trim($code);
-													$value = strtolower($tCode);
+													//$value = strtolower($tCode);
 													if(is_array($asset_array)){
-														if(in_array($value,$asset_array)){
+														if(in_array($tCode,$asset_array)){
 															$asset .=  "<p>".$tCode."</p>";
 														}else{
 															$asset .= "<p class='bg-danger'><span class='glyphicon glyphicon-exclamation-sign'></span>".$tCode."</p>";
@@ -167,9 +170,8 @@
 									</td>
 									
 									<td >
-										<?php 
-											$infonet_status =  ($value['infonet_status'] ==1)? '<font color="green">Active</font>':'<font color="red">Inactive</font>';
-					
+										<?php
+											$infonet_status =( $value['infonet_status']== 1)? 'Active':'Inactive';
 											print $infonet_status;
 										?>
 									</td>
