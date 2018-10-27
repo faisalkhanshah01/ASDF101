@@ -225,8 +225,8 @@
         curl_close( $ch );
         echo $result . "\n\n";
     }
-    
-    
+
+
     function submit_inspection($table,$where=1,$params){
 
         // $this->db->insert($table,$params);
@@ -238,7 +238,8 @@
 
         $response = array(
           'last_id' => 123,
-          'affected_rows' => 1
+          'affected_rows' => 1,
+          'params' => $params
          );
 
         return $response;

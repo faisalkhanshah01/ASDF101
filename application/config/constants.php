@@ -49,6 +49,9 @@ define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
 */
 define('SHOW_DEBUG_BACKTRACE', TRUE);
 
+//product step image upload path
+define('PDM_PRODUCTS_STEPS_UPLOAD_DIR', getcwd() .'/upload/pdm_products_steps/');
+
 /*
 |--------------------------------------------------------------------------
 | Exit Status Codes
@@ -88,5 +91,3 @@ define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 define('FIREBASE_URL', 'https://fcm.googleapis.com/fcm/send');
 define('FIREBASE_API_KEY_ANDROID', 'AAAAHIxvka4:APA91bG3so3K8bC_9r4iDpxjrSU_jFzXdAte4N4epml7S9LCVCFqLpyX2DTkCWxUuFGqQ4VAcGqa0PqKWCvRyuaGPfb-hXHpoEr0sXQWNtvGn1QCDzv0vur75yiGzQ0mFdyrKPde0Ib7');
 define('FIREBASE_API_KEY_IOS', 'AAAAHGAr8oI:APA91bF7vWNB7dVc5RmBZeZ653nZoTlXdJ1CJW21rtRz7VvuWwVKc3oewk6PRg8HOWkFGR-q-C_pg7ANwbLeOpwORFK5-OhnwHuCLQ8JX4F01fUO7cpqR7PK68zaVtmlMUr06FO0sUbFA_f6P4OeF4-PvifXDvLkzA');
-
-
