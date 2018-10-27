@@ -79,6 +79,7 @@ $route['admin/(.+)'] = "system_admin/$1";  // admin url redirect*/
 
 $route['admin'] = "admin/auth";  // admin url redirect
 $route['admin/(.+)'] = "admin/$1";  // admin url redirect
+$route['pdm_api/(.+)'] = "pdm_api/$1"; // pdm Api urls
 
 // Client_name & service_name URL redirection
 $route['([A-Za-z0-9-]+)/(kare|knowledge-tree|asm)'] = "auth/index/$1/$2";

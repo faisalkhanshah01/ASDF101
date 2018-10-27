@@ -1453,7 +1453,8 @@ class Api_controller extends REST_Controller
 	* 	URL: http://192.168.1.3/Mysites/karam/kare/api_controller/components/id
 	* 	URL: http://karam.in/kare_demo/api_controller/components
 	*	URL: http://karam.in/kare/api_controller/components
-	*/	
+	*/
+	
 	function components_new_get($component_id=NULL){
             
                 $client_id=$this->get('client_id');
@@ -1857,8 +1858,24 @@ class Api_controller extends REST_Controller
 	function mdata_get(){   // mdata_asset        mdata_item_series
 		$mdata_id 		= (isset($_REQUEST['mdata_id']))? $_REQUEST['mdata_id'] : '';
 		$userID 		= $_REQUEST['userID'];
-		$userGroupID            = $_REQUEST['userGroupID'];
-		
+		$userGroupID 	= $_REQUEST['userGroupID'];
+		$client_id 	    = $_REQUEST['client_id'];
+		$this->load->model('build_model');
+		$mdata=$this->build_model->get_data('master_data',array('mdata_id'=>$mdata_id));
+		if($mdata && $mdata['mdata_client_fk']==$client_id){
+			$validation='Pass';
+		}else{
+			$validation='Fail';
+		}
+                
+           if($validation=='Fail'){
+               
+             $response=array('status_code'=>404,'message'=>'product not fount');
+             $this->response($reponse,200);
+		    //die; 
+				
+		}
+
 		$this->load->model('kare_model');
 		if($mdata_id==''){
 			$mdata=$this->kare_model->get_mdata_list();	 
@@ -1867,10 +1884,7 @@ class Api_controller extends REST_Controller
 		}
 		$mdata_item_seriesFlag	= 0;
 		$mdata_assetFlag		= 0;
-                #echo "<pre>";
-		#print_r($mdata);die();
-                 
-                 
+		// print_r($mdata);die();
 		if($mdata && !empty($mdata[0])){
 			foreach($mdata as $key=>$val){    
 			/* Client & Delaler */
@@ -1885,9 +1899,6 @@ class Api_controller extends REST_Controller
 					$mdata[$key]['mdata_dealer_id'] = 	(($dealer['client_id'] == null) || ($dealer['client_id'] == NULL))?'':$dealer['client_id'];
 					$mdata[$key]['mdata_dealer'] = (($dealer['client_name'] == null) || ($dealer['client_name'] == NULL))?'':$dealer['client_name'];
 				}
-                              
-                           print_r($mdata);die();    
-                                
 			/* Images */
 				$asset_image = '0'; $item_arrays ='0';
 				if($val['mdata_item_series'] != null ){
@@ -1939,7 +1950,7 @@ class Api_controller extends REST_Controller
 							$assetCodeData = $assetCodeData.'####'.$valueAssetCodes['component_array'];
 						}
 						$assetCodes['product_geo_fancing'] = $valueAssetCodes['product_geo_fancing'];
-                                                $assetCodes['product_work_permit'] = $valueAssetCodes['product_work_permit'];
+					    $assetCodes['product_work_permit'] = $valueAssetCodes['product_work_permit'];
 						$countAssetCodes++;
 					} 
 					
@@ -1955,7 +1966,7 @@ class Api_controller extends REST_Controller
 				$mdata[$key]['product_geo_fancing'] = ($assetCodes['product_geo_fancing'] == null)?'':$assetCodes['product_geo_fancing'];
 				$mdata[$key]['product_work_permit'] = ($assetCodes['product_work_permit'] == null)?'':$assetCodes['product_work_permit'];
 
-                                //  Start to three dates 
+                //  Start to three dates 
 				
 				if( !empty($val['mdata_asset'] )){  
 				   $mdata_assetArray			= !empty($val['mdata_asset'])?json_decode($val['mdata_asset'], true): NULL;
